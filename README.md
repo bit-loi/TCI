@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="TCI-Logo.png" alt="TCI Logo" width="300" />
+</p>
+
 # TCI (Transit Commerce Intelligence)
 
 An AI powered WebGIS platform for economic insight and property investment potential around mass transportation hubs in Indonesia. Built for the MAPID WebGIS Competition, Mass Transportation Edition, 2026.
@@ -15,7 +19,6 @@ An AI powered WebGIS platform for economic insight and property investment poten
 9. Team
 10. Competition Context
 11. Roadmap
-12. References
 
 ## Overview
 
@@ -120,13 +123,13 @@ All components rely on open source or freely available tooling, in line with the
 
 ## Team
 
-| Name | Email | Phone | MAPID Apps Username |
-|---|---|---|---|
-| Abraham Gregorius Anderson Thio | abraham.thio@binus.ac.id | +62 813 1195 1704 | grgsxx |
-| Axel Sanjiro Yang | axel.yang@binus.ac.id | +62 811 8033 337 | axel |
-| Jason Brandon Loi | jason.loi@binus.ac.id | +62 896 4696 9338 | bloi |
-| Stanislaus Alva Jufinto | stanislaus.jufinto@binus.ac.id | +62 896 0194 3530 | stnslv |
-| Vallerie Anne Jose | vallerie.jose@binus.ac.id | +62 813 8815 3588 | annejosss |
+| Name | MAPID Apps Username |
+|---|---|
+| Abraham Gregorius Anderson Thio | grgsxx |
+| Axel Sanjiro Yang | axel |
+| Jason Brandon Loi | bloi |
+| Stanislaus Alva Jufinto | stnslv |
+| Vallerie Anne Jose | annejosss |
 
 ### Team Capability Summary
 
@@ -177,20 +180,6 @@ Phase 4: Train and validate the five AI models against field survey ground truth
 Phase 5: Build the WebGIS frontend and backend, integrate all layers and AI outputs, and deploy a public instance via Vercel
 
 Phase 6: Prepare final submission (PRD, metadata, survey documentation) and prepare for the Top 10 showcase presentation
-
-## References
-
-1. Liputan6, "KRL Commuter Line Layani 400 Juta Pengguna pada 2025," January 27, 2026. Available at liputan6.com.
-2. Investortrust.id, "KRL Jabodetabek Angkut 349,311,251 Penumpang Sepanjang 2025," January 28, 2026, and Kumparan, "Rata Rata Penumpang KRL Harian 951,111 Orang, Januari sampai November 2025," December 7, 2025. Available at investortrust.id and kumparan.com.
-3. "Sistem Pendukung Keputusan Penentuan Lokasi Usaha Kecil Berbasis Web Menggunakan Metode SAW: Studi Kasus Kecamatan Gunungsindur," Jurnal Penelitian Teknik, vol. 2, no. 2, pp. 119 to 133, 2025.
-4. G. Peris, Director of Business Development, MRT Jakarta, quoted in Kumparan, "Harga Properti Dekat Stasiun MRT Jakarta Naik hingga 2 Kali Lipat, Potensi Nilai Tambah Rp250 Triliun," December 20, 2019.
-5. W. S. Wibowo, D. I. Sensuse, S. Lusa, et al., "A Systematic Literature Review on Open Government Data: Challenges and Mapped Solutions," Journal of Theoretical and Applied Information Technology, vol. 101, no. 5, pp. 1806 to 1818, March 2023.
-6. Depoknet, "Laporan CBRE Q2 2026: Okupansi Kantor Jakarta Naik, TOD Jadi Pendorong Properti Masa Depan," July 22, 2026, citing CBRE Indonesia.
-7. I. Syabri, "The Influence of Railway Station on Residential Property Values, Spatial Hedonic Approach: The Case of Serpong's Railway Station," Jurnal Teknik Sipil, vol. 18, no. 3, pp. 292 to 300, December 2011.
-8. Institute for Transportation and Development Policy (ITDP), TOD Standard, 3rd edition, New York, USA, June 2017.
-9. H. A. Setyanida, E. Fatimah, and M. C. Adriana, "Penerapan Urban Network Analysis dalam Pengukuran Aksesibilitas Pejalan Kaki di Transit Oriented Development Dukuh Atas," TATALOKA, vol. 27, no. 4, pp. 294 to 305, November 2025.
-10. A. N. Indriyanti, "Mengungkap: Bagaimana UMKM Menyumbang 61% PDB dan Menjadi Penopang Ekonomi Indonesia," Majoo, December 8, 2025.
-11. Badan Informasi Geospasial (BIG), "Ina Geoportal Web Map," tanahair.indonesia.go.id.
 
 ## License
 
