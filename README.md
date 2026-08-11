@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="TCI-Logo.png" alt="TCI Logo" width="300" />
+  <img src="/assets/TCI-Logo.png" alt="TCI Logo" width="300" />
 </p>
 
 # TCI (Transit Commerce Intelligence)
