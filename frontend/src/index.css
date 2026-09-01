@@ -1,1 +1,5 @@
 /** @format */
+
+@import "tailwindcss";
+@import "./css/base.css";
+@import "./css/animation.css";

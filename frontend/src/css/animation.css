@@ -1,0 +1,125 @@
+/** @format */
+
+/* button */
+.button-animation {
+	cursor: pointer;
+	transition: transform 150ms ease;
+}
+
+.button-animation:hover {
+	opacity: 0.9;
+}
+
+.button-animation:active {
+	transform: scale(0.95);
+}
+
+/* Hero animations */
+@keyframes fade-up {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.animate-fade-up {
+	animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes slide-in-bg {
+	from {
+		clip-path: inset(0 100% 0 0);
+	}
+
+	to {
+		clip-path: inset(0);
+	}
+}
+
+.animate-slide-in {
+	animation: slide-in-bg 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Map animations */
+@keyframes marker-pop {
+	0% {
+		opacity: 0;
+		transform: scale(0);
+	}
+
+	70% {
+		opacity: 1;
+		transform: scale(1.2);
+	}
+
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+.animate-marker {
+	animation: marker-pop 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Map card reveal */
+@keyframes card-reveal {
+	from {
+		opacity: 0;
+		transform: translateY(20px) scale(0.96);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+.animate-card-reveal {
+	animation: card-reveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes map-reveal {
+	from {
+		opacity: 0;
+		transform: scale(1.03);
+	}
+
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+.animate-map-reveal {
+	animation: map-reveal 1.2s ease-out forwards;
+}
+
+/* Animation delays */
+.delay-100 {
+	animation-delay: 100ms;
+}
+
+.delay-200 {
+	animation-delay: 200ms;
+}
+
+/* Slide in left */
+@keyframes slide-in-text {
+	from {
+		clip-path: inset(0 100% 0 0);
+	}
+
+	to {
+		clip-path: inset(0 0 0 0);
+	}
+}
+
+.animate-slide-in-text {
+	animation: slide-in-text 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}

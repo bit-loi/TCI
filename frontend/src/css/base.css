@@ -1,0 +1,49 @@
+/** @format */
+
+* {
+	font-family: "Google Sans Flex", sans-serif;
+	font-synthesis: none;
+}
+
+.color-gradient {
+	background: linear-gradient(96deg, #60d2cd 0%, #3281d8 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.bg-gradient {
+	background: linear-gradient(96deg, #60d2cd 0%, #3281d8 100%);
+	color: white;
+}
+
+/* Brand colors */
+:root {
+	--color-main: #3a8fd6;
+	--color-secondary: #60d2cd;
+	--color-light: #e9f5ff;
+}
+
+.text-main {
+	color: var(--color-main);
+}
+
+.bg-main {
+	background-color: var(--color-main);
+}
+
+.text-secondary {
+	color: var(--color-secondary);
+}
+
+.bg-secondary {
+	background-color: var(--color-secondary);
+}
+
+.text-light {
+	color: var(--color-light);
+}
+
+.bg-light {
+	background-color: var(--color-light);
+}
