@@ -3,3 +3,18 @@
 @import "tailwindcss";
 @import "./css/base.css";
 @import "./css/animation.css";
+
+/* Override default Leaflet popup styles to match the design */
+.leaflet-popup-content-wrapper {
+	border-radius: 0.75rem;
+	box-shadow:
+		0 10px 15px -3px rgba(0, 0, 0, 0.1),
+		0 4px 6px -2px rgba(0, 0, 0, 0.05);
+	border: 1px solid #e5e7eb;
+}
+.leaflet-popup-content {
+	margin: 12px;
+}
+.leaflet-container {
+	font-family: inherit;
+}
