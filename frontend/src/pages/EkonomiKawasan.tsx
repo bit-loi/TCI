@@ -15,6 +15,7 @@ import {
 
 import Layout from "@/components/ui/Layout";
 
+// @ts-ignore
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
