@@ -1,5 +1,7 @@
 /** @format */
 
+import "leaflet/dist/leaflet.css";
+
 import { useMemo, useState } from "react";
 
 import L from "leaflet";
@@ -8,7 +10,7 @@ import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { useNavigate } from "react-router-dom";
 
 import Layout from "@/components/ui/Layout";
-import { KRL_STATIONS } from "@/data/krl_stations";
+import { KRL_STATIONS, type Station } from "@/data/krl_stations";
 
 // @ts-ignore
 delete L.Icon.Default.prototype._getIconUrl;
@@ -21,13 +23,6 @@ L.Icon.Default.mergeOptions({
 	shadowUrl:
 		"https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
 });
-
-type Station = {
-	id: string;
-	name: string;
-	coord: [number, number];
-	lines: string[];
-};
 
 function MapFocus({ station }: { station: Station | null }) {
 	const map = useMap();
@@ -110,40 +105,58 @@ export default function PropertiTOD() {
 									click: () => handleStationSelect(station),
 								}}
 							>
-								<Popup minWidth={280}>
-									<div className="p-1">
-										<div className="flex justify-between items-start mb-3">
-											<div>
-												<h3 className="font-bold text-lg m-0">
-													{station.name}
-												</h3>
+								<Popup className="station-popup" maxWidth={280}>
+									<div className="flex items-start justify-between gap-2">
+										<div className="min-w-0">
+											<p className="text-[10px] uppercase tracking-wider text-gray-400">
+												Selected Station
+											</p>
 
-												<p className="text-xs text-gray-500 mt-1">
-													{station.lines.join(" • ")}
-												</p>
-											</div>
-										</div>
-
-										<div className="bg-gray-50 p-3 rounded-lg mb-4">
-											<p className="text-xs text-gray-400">KRL Station</p>
-
-											<p className="font-medium text-blue-600">
+											<h3 className="text-lg font-semibold text-gray-800 ">
 												{station.name}
+											</h3>
+
+											<p className="text-xs text-gray-500 mt-1">
+												{station.lines.join(" • ")}
 											</p>
 										</div>
 
-										<p className="text-xs text-gray-500 mb-4">
-											Pilih stasiun untuk melihat analisis Property / TOD.
+										<div className="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
+											<TrendingUp className="w-4 h-4 text-blue-500" />
+										</div>
+									</div>
+
+									<div className="border-t border-gray-100 my-1" />
+
+									<div className="bg-gray-50 rounded-lg p-1 px-4">
+										<p className="text-[10px] uppercase tracking-wider text-gray-400">
+											KRL Lines
 										</p>
 
-										<button
-											type="button"
-											onClick={() => navigate(`/map/tod/stasiun/${station.id}`)}
-											className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 rounded-lg text-sm transition"
-										>
-											Cek Detail
-										</button>
+										<p className="text-sm font-medium text-blue-600 mt-1">
+											{station.lines.join(" • ")}
+										</p>
 									</div>
+
+									<div className="mt-1 bg-blue-50 rounded-lg px-2 py-1">
+										<p className="text-[10px] uppercase tracking-wider text-blue-400">
+											Property / TOD
+										</p>
+
+										<p className="text-xs text-blue-600 mt-1 leading-relaxed">
+											Station data loaded from the local KRL station dataset.
+											Investment scoring can be applied from the analysis
+											dataset.
+										</p>
+									</div>
+
+									<button
+										type="button"
+										onClick={() => navigate(`/map/tod/stasiun/${station.id}`)}
+										className="w-full mt-4 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2.5 rounded-lg text-sm transition"
+									>
+										Cek Detail Stasiun
+									</button>
 								</Popup>
 							</Marker>
 						))}
@@ -305,61 +318,6 @@ export default function PropertiTOD() {
 						</label>
 					</div>
 				</div>
-
-				{selectedStation && (
-					<div className="absolute top-28 right-4 z-[1000] bg-white w-80 rounded-xl shadow-lg p-5">
-						<div className="flex items-start justify-between gap-3">
-							<div>
-								<p className="text-[10px] uppercase tracking-wider text-gray-400">
-									Selected Station
-								</p>
-
-								<h3 className="text-lg font-semibold text-gray-800 mt-1">
-									{selectedStation.name}
-								</h3>
-
-								<p className="text-xs text-gray-500 mt-1">
-									{selectedStation.lines.join(" • ")}
-								</p>
-							</div>
-
-							<div className="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
-								<TrendingUp className="w-4 h-4 text-blue-500" />
-							</div>
-						</div>
-
-						<div className="border-t border-gray-100 my-4" />
-
-						<div className="bg-gray-50 rounded-lg p-3">
-							<p className="text-[10px] uppercase tracking-wider text-gray-400">
-								KRL Lines
-							</p>
-
-							<p className="text-sm font-medium text-blue-600 mt-1">
-								{selectedStation.lines.join(" • ")}
-							</p>
-						</div>
-
-						<div className="mt-3 bg-blue-50 rounded-lg p-3">
-							<p className="text-[10px] uppercase tracking-wider text-blue-400">
-								Property / TOD
-							</p>
-
-							<p className="text-xs text-blue-600 mt-1 leading-relaxed">
-								Station data loaded from the local KRL station dataset.
-								Investment scoring can be applied from the analysis dataset.
-							</p>
-						</div>
-
-						<button
-							type="button"
-							onClick={() => navigate(`/map/tod/stasiun/${selectedStation.id}`)}
-							className="w-full mt-4 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2.5 rounded-lg text-sm transition"
-						>
-							Cek Detail Stasiun
-						</button>
-					</div>
-				)}
 			</div>
 		</Layout>
 	);

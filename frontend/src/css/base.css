@@ -5,6 +5,11 @@
 	font-synthesis: none;
 }
 
+.station-popup .leaflet-popup-content {
+	width: 240px !important;
+	margin: 12px;
+}
+
 .color-gradient {
 	background: linear-gradient(96deg, #60d2cd 0%, #3281d8 100%);
 	background-clip: text;

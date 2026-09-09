@@ -5,7 +5,7 @@ import { useState } from "react";
 import { X } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { stations } from "./PropertiTOD";
+import { KRL_STATIONS } from "@/data/krl_stations";
 
 export default function StationDetail() {
 	const { id } = useParams();
@@ -15,7 +15,7 @@ export default function StationDetail() {
 
 	const tabs = ["Summary", "Full Trends", "Comparison"];
 
-	const station = stations.find((item) => item.id === Number(id));
+	const station = KRL_STATIONS.find((item) => item.id === id);
 
 	if (!station) {
 		return (
