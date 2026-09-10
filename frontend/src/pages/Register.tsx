@@ -2,25 +2,53 @@
 
 import { useState } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import LogoNav from "@/assets/logo/logo-nav.png";
+import { supabase } from "@/config/supabase";
 
 export default function Register() {
+	const navigate = useNavigate();
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState("");
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+		setError("");
+
 		if (password !== confirmPassword) {
-			alert("Password tidak cocok!");
+			setError("Password tidak cocok!");
 			return;
 		}
-		// TODO: integrate with backend auth
-		console.log("Register:", { name, email, password });
+
+		setLoading(true);
+
+		const { data, error: authError } = await supabase.auth.signUp({
+			email,
+			password,
+			options: {
+				data: { full_name: name },
+			},
+		});
+
+		if (authError) {
+			setError(authError.message);
+			setLoading(false);
+			return;
+		}
+
+		if (data.user && !data.session) {
+			navigate("/login?registered=true");
+		} else {
+			navigate("/dashboard");
+		}
+
+		setLoading(false);
 	};
 
 	return (
@@ -32,7 +60,28 @@ export default function Register() {
 			<div className="animate-fade-up relative z-10 w-full max-w-md">
 				{/* Card */}
 				<div className="rounded-3xl bg-white p-8 shadow-[0_20px_50px_#D3DEF5] sm:p-10">
-					{/* Logo */}
+					{/* Back to Home */}
+					<Link
+						to="/"
+						className="mb-6 inline-flex items-center gap-2 text-sm text-[#868686] transition-colors hover:text-[#3a8fd6]"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							strokeWidth="2"
+							strokeLinecap="round"
+							strokeLinejoin="round"
+						>
+							<path d="m15 18-6-6 6-6" />
+						</svg>
+						Kembali ke Beranda
+					</Link>
+
+					{/* Logo & Title */}
 					<div className="mb-8 flex flex-col items-center">
 						<Link to="/" aria-label="TCI, return to home">
 							<img
@@ -48,6 +97,13 @@ export default function Register() {
 							Gabung dan mulai jelajahi insight transit
 						</p>
 					</div>
+
+					{/* Error */}
+					{error && (
+						<div className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
+							{error}
+						</div>
+					)}
 
 					{/* Form */}
 					<form onSubmit={handleSubmit} className="flex flex-col gap-5">
@@ -189,9 +245,10 @@ export default function Register() {
 						{/* Submit */}
 						<button
 							type="submit"
-							className="bg-gradient button-animation mt-1 w-full cursor-pointer rounded-xl py-3.5 text-base font-semibold text-white"
+							disabled={loading}
+							className="bg-gradient button-animation mt-1 w-full cursor-pointer rounded-xl py-3.5 text-base font-semibold text-white disabled:opacity-60"
 						>
-							Daftar
+							{loading ? "Mendaftar..." : "Daftar"}
 						</button>
 					</form>
 
