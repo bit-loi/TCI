@@ -6,13 +6,18 @@ import { Navigate, Route, Routes } from "react-router-dom";
 
 import EkonomiKawasan from "./pages/EkonomiKawasan";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 import PropertiTOD from "./pages/PropertiTOD";
+import Register from "./pages/Register";
 import StationDetail from "./pages/StationDetail";
 
 function App() {
 	return (
 		<Routes>
 			<Route path="/" element={<Home />} />
+
+			<Route path="/login" element={<Login />} />
+			<Route path="/register" element={<Register />} />
 
 			<Route
 				path="/map"
