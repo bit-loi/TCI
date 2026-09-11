@@ -1,78 +1,78 @@
 station_code,station_id,station_name,line,latitude,longitude,source_status
-STA-001,jakartakota,Jakarta Kota,Bogor,-6.1352,106.8133,synthetic_training_only
-STA-002,jayakarta,Jayakarta,Bogor,-6.1385,106.828,synthetic_training_only
-STA-003,manggabesar,Mangga Besar,Bogor,-6.1467,106.8258,synthetic_training_only
-STA-004,sawahbesar,Sawah Besar,Bogor,-6.1552,106.8248,synthetic_training_only
-STA-005,juanda,Juanda,Bogor,-6.1663,106.8309,synthetic_training_only
-STA-006,gondangdia,Gondangdia,Bogor,-6.1848,106.8317,synthetic_training_only
-STA-007,cikini,Cikini,Bogor,-6.1934,106.8365,synthetic_training_only
-STA-008,manggarai,Manggarai,Bogor,-6.2107,106.85,synthetic_training_only
-STA-009,tebet,Tebet,Bogor,-6.2255,106.8508,synthetic_training_only
-STA-010,cawang,Cawang,Bogor,-6.2432,106.8622,synthetic_training_only
-STA-011,durenkalibata,Duren Kalibata,Bogor,-6.2569,106.85,synthetic_training_only
-STA-012,pasarminggu,Pasar Minggu,Bogor,-6.2839,106.842,synthetic_training_only
-STA-013,pasarminggubaru,Pasar Minggu Baru,Bogor,-6.29,106.841,synthetic_training_only
-STA-014,tanjungbarat,Tanjung Barat,Bogor,-6.3036,106.8477,synthetic_training_only
-STA-015,lentengagung,Lenteng Agung,Bogor,-6.3222,106.8443,synthetic_training_only
-STA-016,univpancasila,Universitas Pancasila,Bogor,-6.3345,106.8378,synthetic_training_only
-STA-017,univindonesia,Universitas Indonesia,Bogor,-6.3608,106.8309,synthetic_training_only
-STA-018,pondokcina,Pondok Cina,Bogor,-6.3691,106.831,synthetic_training_only
-STA-019,depokbaru,Depok Baru,Bogor,-6.3953,106.8177,synthetic_training_only
-STA-020,depok,Depok,Bogor,-6.4004,106.8188,synthetic_training_only
-STA-021,citayam,Citayam,Bogor,-6.4407,106.8482,synthetic_training_only
-STA-022,bojonggede,Bojonggede,Bogor,-6.4696,106.8149,synthetic_training_only
-STA-023,cilebut,Cilebut,Bogor,-6.5232,106.8127,synthetic_training_only
-STA-024,bogor,Bogor,Bogor,-6.5944,106.7891,synthetic_training_only
-STA-025,cibinong,Cibinong,Nambo,-6.4825,106.8546,synthetic_training_only
-STA-026,nambo,Nambo,Nambo,-6.5153,106.8631,synthetic_training_only
-STA-027,pondokrajeg,Pondok Rajeg,Nambo,-6.4735,106.8618,synthetic_training_only
-STA-028,kampungbandan,Kampung Bandan,Cikarang,-6.1325,106.8156,synthetic_training_only
-STA-029,angke,Angke,Cikarang,-6.1443,106.7994,synthetic_training_only
-STA-030,duri,Duri,Cikarang,-6.162,106.8054,synthetic_training_only
-STA-031,tanahabang,Tanah Abang,Cikarang,-6.1868,106.8125,synthetic_training_only
-STA-032,karet,Karet,Cikarang,-6.2011,106.8177,synthetic_training_only
-STA-033,sudirmanbaru,BNI City,Cikarang,-6.2039,106.8218,synthetic_training_only
-STA-034,sudirman,Sudirman,Cikarang,-6.2074,106.8225,synthetic_training_only
-STA-035,matraman,Matraman,Cikarang,-6.2118,106.8628,synthetic_training_only
-STA-036,jatinegara,Jatinegara,Cikarang,-6.2149,106.8703,synthetic_training_only
-STA-037,klender,Klender,Cikarang,-6.2126,106.8912,synthetic_training_only
-STA-038,buaran,Buaran,Cikarang,-6.2088,106.9101,synthetic_training_only
-STA-039,klenderbaru,Klender Baru,Cikarang,-6.2159,106.8988,synthetic_training_only
-STA-040,cakung,Cakung,Cikarang,-6.1848,106.9445,synthetic_training_only
-STA-041,kranji,Kranji,Cikarang,-6.2333,106.9765,synthetic_training_only
-STA-042,bekasi,Bekasi,Cikarang,-6.238,106.9896,synthetic_training_only
-STA-043,bekasitimur,Bekasi Timur,Cikarang,-6.2321,107.0087,synthetic_training_only
-STA-044,tambun,Tambun,Cikarang,-6.2389,107.0397,synthetic_training_only
-STA-045,cibitung,Cibitung,Cikarang,-6.2411,107.1043,synthetic_training_only
-STA-046,telagamurni,Metland Telaga Murni,Cikarang,-6.2647,107.1391,synthetic_training_only
-STA-047,cikarang,Cikarang,Cikarang,-6.2624,107.1526,synthetic_training_only
-STA-048,grogol,Grogol,Tangerang,-6.1633,106.7899,synthetic_training_only
-STA-049,pesing,Pesing,Tangerang,-6.1583,106.7767,synthetic_training_only
-STA-050,tamankota,Taman Kota,Tangerang,-6.1583,106.7629,synthetic_training_only
-STA-051,bojongindah,Bojong Indah,Tangerang,-6.1583,106.7476,synthetic_training_only
-STA-052,rawabuaya,Rawa Buaya,Tangerang,-6.1583,106.7328,synthetic_training_only
-STA-053,kalideres,Kalideres,Tangerang,-6.1541,106.7027,synthetic_training_only
-STA-054,poris,Poris,Tangerang,-6.1553,106.6863,synthetic_training_only
-STA-055,batuceper,Batu Ceper,Tangerang,-6.1601,106.6605,synthetic_training_only
-STA-056,tanahtinggi,Tanah Tinggi,Tangerang,-6.1662,106.6432,synthetic_training_only
-STA-057,tangerang,Tangerang,Tangerang,-6.1783,106.6319,synthetic_training_only
-STA-058,palmerah,Palmerah,Rangkasbitung,-6.2003,106.7943,synthetic_training_only
-STA-059,kebayoran,Kebayoran,Rangkasbitung,-6.2439,106.7823,synthetic_training_only
-STA-060,pondokranji,Pondok Ranji,Rangkasbitung,-6.2882,106.7345,synthetic_training_only
-STA-061,jurangmangu,Jurangmangu,Rangkasbitung,-6.2694,106.7241,synthetic_training_only
-STA-062,sudimara,Sudimara,Rangkasbitung,-6.283,106.7139,synthetic_training_only
-STA-063,rawabuntu,Rawa Buntu,Rangkasbitung,-6.3153,106.6817,synthetic_training_only
-STA-064,serpong,Serpong,Rangkasbitung,-6.3208,106.6707,synthetic_training_only
-STA-065,cisauk,Cisauk,Rangkasbitung,-6.3167,106.6265,synthetic_training_only
-STA-066,cicayur,Cicayur,Rangkasbitung,-6.3216,106.5946,synthetic_training_only
-STA-067,parungpanjang,Parung Panjang,Rangkasbitung,-6.3789,106.4999,synthetic_training_only
-STA-068,cilejit,Cilejit,Rangkasbitung,-6.3585,106.4478,synthetic_training_only
-STA-069,daru,Daru,Rangkasbitung,-6.3389,106.4128,synthetic_training_only
-STA-070,tenjo,Tenjo,Rangkasbitung,-6.3474,106.3888,synthetic_training_only
-STA-071,tigaraksa,Tigaraksa,Rangkasbitung,-6.301,106.3494,synthetic_training_only
-STA-072,cikoya,Cikoya,Rangkasbitung,-6.2947,106.3168,synthetic_training_only
-STA-073,maja,Maja,Rangkasbitung,-6.2757,106.2789,synthetic_training_only
-STA-074,citeras,Citeras,Rangkasbitung,-6.2793,106.2299,synthetic_training_only
-STA-075,rangkasbitung,Rangkasbitung,Rangkasbitung,-6.3502,106.1602,synthetic_training_only
-STA-076,ancol,Ancol,Tanjung Priok,-6.1236,106.8321,synthetic_training_only
-STA-077,tanjungpriok,Tanjung Priok,Tanjung Priok,-6.1147,106.8807,synthetic_training_only
+STA-001,jakartakota,Jakarta Kota,Bogor,-6.1352,106.8133,synthetic_prototype
+STA-002,jayakarta,Jayakarta,Bogor,-6.1385,106.828,synthetic_prototype
+STA-003,manggabesar,Mangga Besar,Bogor,-6.1467,106.8258,synthetic_prototype
+STA-004,sawahbesar,Sawah Besar,Bogor,-6.1552,106.8248,synthetic_prototype
+STA-005,juanda,Juanda,Bogor,-6.1663,106.8309,synthetic_prototype
+STA-006,gondangdia,Gondangdia,Bogor,-6.1848,106.8317,synthetic_prototype
+STA-007,cikini,Cikini,Bogor,-6.1934,106.8365,synthetic_prototype
+STA-008,manggarai,Manggarai,Bogor,-6.2107,106.85,synthetic_prototype
+STA-009,tebet,Tebet,Bogor,-6.2255,106.8508,synthetic_prototype
+STA-010,cawang,Cawang,Bogor,-6.2432,106.8622,synthetic_prototype
+STA-011,durenkalibata,Duren Kalibata,Bogor,-6.2569,106.85,synthetic_prototype
+STA-012,pasarminggu,Pasar Minggu,Bogor,-6.2839,106.842,synthetic_prototype
+STA-013,pasarminggubaru,Pasar Minggu Baru,Bogor,-6.29,106.841,synthetic_prototype
+STA-014,tanjungbarat,Tanjung Barat,Bogor,-6.3036,106.8477,synthetic_prototype
+STA-015,lentengagung,Lenteng Agung,Bogor,-6.3222,106.8443,synthetic_prototype
+STA-016,univpancasila,Universitas Pancasila,Bogor,-6.3345,106.8378,synthetic_prototype
+STA-017,univindonesia,Universitas Indonesia,Bogor,-6.3608,106.8309,synthetic_prototype
+STA-018,pondokcina,Pondok Cina,Bogor,-6.3691,106.831,synthetic_prototype
+STA-019,depokbaru,Depok Baru,Bogor,-6.3953,106.8177,synthetic_prototype
+STA-020,depok,Depok,Bogor,-6.4004,106.8188,synthetic_prototype
+STA-021,citayam,Citayam,Bogor,-6.4407,106.8482,synthetic_prototype
+STA-022,bojonggede,Bojonggede,Bogor,-6.4696,106.8149,synthetic_prototype
+STA-023,cilebut,Cilebut,Bogor,-6.5232,106.8127,synthetic_prototype
+STA-024,bogor,Bogor,Bogor,-6.5944,106.7891,synthetic_prototype
+STA-025,cibinong,Cibinong,Nambo,-6.4825,106.8546,synthetic_prototype
+STA-026,nambo,Nambo,Nambo,-6.5153,106.8631,synthetic_prototype
+STA-027,pondokrajeg,Pondok Rajeg,Nambo,-6.4735,106.8618,synthetic_prototype
+STA-028,kampungbandan,Kampung Bandan,Cikarang,-6.1325,106.8156,synthetic_prototype
+STA-029,angke,Angke,Cikarang,-6.1443,106.7994,synthetic_prototype
+STA-030,duri,Duri,Cikarang,-6.162,106.8054,synthetic_prototype
+STA-031,tanahabang,Tanah Abang,Cikarang,-6.1868,106.8125,synthetic_prototype
+STA-032,karet,Karet,Cikarang,-6.2011,106.8177,synthetic_prototype
+STA-033,sudirmanbaru,BNI City,Cikarang,-6.2039,106.8218,synthetic_prototype
+STA-034,sudirman,Sudirman,Cikarang,-6.2074,106.8225,synthetic_prototype
+STA-035,matraman,Matraman,Cikarang,-6.2118,106.8628,synthetic_prototype
+STA-036,jatinegara,Jatinegara,Cikarang,-6.2149,106.8703,synthetic_prototype
+STA-037,klender,Klender,Cikarang,-6.2126,106.8912,synthetic_prototype
+STA-038,buaran,Buaran,Cikarang,-6.2088,106.9101,synthetic_prototype
+STA-039,klenderbaru,Klender Baru,Cikarang,-6.2159,106.8988,synthetic_prototype
+STA-040,cakung,Cakung,Cikarang,-6.1848,106.9445,synthetic_prototype
+STA-041,kranji,Kranji,Cikarang,-6.2333,106.9765,synthetic_prototype
+STA-042,bekasi,Bekasi,Cikarang,-6.238,106.9896,synthetic_prototype
+STA-043,bekasitimur,Bekasi Timur,Cikarang,-6.2321,107.0087,synthetic_prototype
+STA-044,tambun,Tambun,Cikarang,-6.2389,107.0397,synthetic_prototype
+STA-045,cibitung,Cibitung,Cikarang,-6.2411,107.1043,synthetic_prototype
+STA-046,telagamurni,Metland Telaga Murni,Cikarang,-6.2647,107.1391,synthetic_prototype
+STA-047,cikarang,Cikarang,Cikarang,-6.2624,107.1526,synthetic_prototype
+STA-048,grogol,Grogol,Tangerang,-6.1633,106.7899,synthetic_prototype
+STA-049,pesing,Pesing,Tangerang,-6.1583,106.7767,synthetic_prototype
+STA-050,tamankota,Taman Kota,Tangerang,-6.1583,106.7629,synthetic_prototype
+STA-051,bojongindah,Bojong Indah,Tangerang,-6.1583,106.7476,synthetic_prototype
+STA-052,rawabuaya,Rawa Buaya,Tangerang,-6.1583,106.7328,synthetic_prototype
+STA-053,kalideres,Kalideres,Tangerang,-6.1541,106.7027,synthetic_prototype
+STA-054,poris,Poris,Tangerang,-6.1553,106.6863,synthetic_prototype
+STA-055,batuceper,Batu Ceper,Tangerang,-6.1601,106.6605,synthetic_prototype
+STA-056,tanahtinggi,Tanah Tinggi,Tangerang,-6.1662,106.6432,synthetic_prototype
+STA-057,tangerang,Tangerang,Tangerang,-6.1783,106.6319,synthetic_prototype
+STA-058,palmerah,Palmerah,Rangkasbitung,-6.2003,106.7943,synthetic_prototype
+STA-059,kebayoran,Kebayoran,Rangkasbitung,-6.2439,106.7823,synthetic_prototype
+STA-060,pondokranji,Pondok Ranji,Rangkasbitung,-6.2882,106.7345,synthetic_prototype
+STA-061,jurangmangu,Jurangmangu,Rangkasbitung,-6.2694,106.7241,synthetic_prototype
+STA-062,sudimara,Sudimara,Rangkasbitung,-6.283,106.7139,synthetic_prototype
+STA-063,rawabuntu,Rawa Buntu,Rangkasbitung,-6.3153,106.6817,synthetic_prototype
+STA-064,serpong,Serpong,Rangkasbitung,-6.3208,106.6707,synthetic_prototype
+STA-065,cisauk,Cisauk,Rangkasbitung,-6.3167,106.6265,synthetic_prototype
+STA-066,cicayur,Cicayur,Rangkasbitung,-6.3216,106.5946,synthetic_prototype
+STA-067,parungpanjang,Parung Panjang,Rangkasbitung,-6.3789,106.4999,synthetic_prototype
+STA-068,cilejit,Cilejit,Rangkasbitung,-6.3585,106.4478,synthetic_prototype
+STA-069,daru,Daru,Rangkasbitung,-6.3389,106.4128,synthetic_prototype
+STA-070,tenjo,Tenjo,Rangkasbitung,-6.3474,106.3888,synthetic_prototype
+STA-071,tigaraksa,Tigaraksa,Rangkasbitung,-6.301,106.3494,synthetic_prototype
+STA-072,cikoya,Cikoya,Rangkasbitung,-6.2947,106.3168,synthetic_prototype
+STA-073,maja,Maja,Rangkasbitung,-6.2757,106.2789,synthetic_prototype
+STA-074,citeras,Citeras,Rangkasbitung,-6.2793,106.2299,synthetic_prototype
+STA-075,rangkasbitung,Rangkasbitung,Rangkasbitung,-6.3502,106.1602,synthetic_prototype
+STA-076,ancol,Ancol,Tanjung Priok,-6.1236,106.8321,synthetic_prototype
+STA-077,tanjungpriok,Tanjung Priok,Tanjung Priok,-6.1147,106.8807,synthetic_prototype

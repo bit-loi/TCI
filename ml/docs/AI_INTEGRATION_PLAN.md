@@ -2,21 +2,21 @@
 
 ## Status dan keputusan
 
-Dokumen ini menerjemahkan bagian **AI Integration** pada PRD ke implementasi yang dapat dipertanggungjawabkan terhadap kode dan data yang tersedia pada 11 September 2026. Tahap ini hanya membuat rencana dan struktur folder. Notebook pelatihan (`.ipynb`) dan artefak model (`.pkl`) dibuat pada tahap implementasi setelah kontrak input/output di bawah disetujui.
+Dokumen ini menerjemahkan bagian **AI Integration** pada PRD ke implementasi yang dapat dipertanggungjawabkan terhadap kode dan data yang tersedia pada 11 September 2026. Notebook reproducible, data latihan sintetis, evaluasi, dan artefak prototipe sudah tersedia untuk kelima area. Seluruh hasil tetap berlabel sintetis dan belum boleh diposisikan sebagai insight produksi.
 
-Dataset saat ini adalah data dummy/sintetis. Isinya 77 stasiun, 2.772 baris volume bulanan 2023-01 sampai 2025-12, dan profil stasiun lengkap tanpa nilai hilang. Dataset ini cukup untuk prototipe forecasting dan clustering. Ia **tidak** memuat transaksi/Menu Go/Struk Go, properti/lahan, jaringan pedestrian, survei berlabel, atau target potensi investasi. Karena itu regression/scoring, classification, dan LLM tidak boleh diposisikan sebagai model terlatih dari dataset ini.
+Dataset saat ini adalah data dummy/sintetis. Isinya 77 stasiun, 2.772 baris volume bulanan 2023-01 sampai 2025-12, profil stasiun, serta fixture sintetis untuk scoring, classification, dan evaluasi insight. Dataset ini **tidak** memuat transaksi/Menu Go/Struk Go, properti/lahan, jaringan pedestrian, atau survei lapangan berlabel. Karena itu seluruh model hanya menguji pipeline, kontrak output, dan guardrail; bukan membuktikan potensi investasi atau rekomendasi usaha nyata.
 
 | AI integration PRD | Keputusan data saat ini | Output yang dapat diberikan sekarang |
 | --- | --- | --- |
-| Forecasting | Layak diprototipe | Prediksi volume bulanan 3 bulan per stasiun, tren dan metrik holdout |
-| Clustering | Layak diprototipe | `cluster_id`, label tipologi berbasis fitur yang tersedia, dan ringkasan profil cluster |
-| Regression / predictive score | Ditunda | Weighted score yang dapat ditelusuri, bukan prediksi ML |
-| Classification | Ditunda | Tidak ada rekomendasi bisnis berbasis model; tampilkan status data belum cukup |
-| LLM insight | Ditunda sebagai API | Narasi template berbasis output tervalidasi, tanpa klaim prediksi baru |
+| Forecasting | Prototipe sintetis selesai | Prediksi volume bulanan 3 bulan per stasiun, tren dan metrik holdout |
+| Clustering | Prototipe sintetis selesai | `cluster_id`, label tipologi berbasis fitur yang tersedia, dan ringkasan profil cluster |
+| Regression / predictive score | Pipeline sintetis selesai | Perbandingan baseline, ElasticNet, dan Random Forest; skor bukan hasil observasi nyata |
+| Classification | Pipeline sintetis selesai | Evaluasi holdout berbasis stasiun; rekomendasi tetap berlabel sintetis |
+| LLM insight | Fixture dan fallback selesai | Evaluasi grounding/schema deterministik; integrasi API LLM belum dilakukan |
 
 ## Kesesuaian dengan UI dan backend saat ini
 
-Kode frontend memiliki dataset lokal `KRL_STATIONS`, peta ekonomi dengan input `station.id`, koordinat, kategori POI, dan radius 500--1.000 m, serta peta TOD/detail stasiun yang menunggu `score`, `rank`, `typology`, dan `growth`. Backend hanya menyediakan health dan auth; semua controller/service analisis dan AI masih kosong. Maka artefak AI harus terlebih dahulu diekspor sebagai tabel hasil versioned, lalu disajikan lewat API Express. Model `.pkl` tidak dipanggil langsung dari Node.js.
+Kode frontend memiliki dataset lokal `KRL_STATIONS`, peta ekonomi dengan input `station.id`, koordinat, kategori POI, dan radius 500--1.000 m, serta peta TOD/detail stasiun yang menunggu hasil analisis. Backend hanya menyediakan health dan auth; semua controller/service analisis dan AI masih kosong. Artifact handoff yang disajikan lewat API Express adalah `ml/outputs/station_analysis.json` dan `ml/outputs/station_analysis.geojson`. Model `.pkl` tidak dipanggil langsung dari Node.js.
 
 Kontrak respons target per stasiun:
 
@@ -24,13 +24,14 @@ Kontrak respons target per stasiun:
 {
   "station_id": "jakartakota",
   "station_name": "Jakarta Kota",
-  "score": null,
-  "rank": null,
+  "as_of_period": "2025-12",
+  "score": {"value": 72.45, "rank": 3, "priority": "high", "method": "weighted_prototype", "breakdown": []},
   "typology": {"cluster_id": 0, "label": "Hub aktivitas tinggi"},
-  "growth": {"historical_yoy_pct": 6.36, "forecast_3m_pct": 1.8},
   "forecast": [{"period": "2026-01", "predicted_passengers": 1200000}],
-  "insight": {"text": "...", "source_run_id": "..."},
-  "data_status": "synthetic_prototype"
+  "business_recommendations": [{"location_id": "LOC-STA-001", "radius_m": 500, "category": "Makanan"}],
+  "insight_context": {},
+  "source_status": "synthetic_prototype",
+  "data_limitations": "Synthetic prototype only; not a production investment or business recommendation."
 }
 ```
 
@@ -43,7 +44,7 @@ Kontrak respons target per stasiun:
 3. **Enrichment:** pada tahap ini hanya fitur turunan yang aman dari Excel: lag 1/3/12 bulan, rolling mean 3/6 bulan, pertumbuhan, jumlah lintas, status hub, jarak Monas, dan koordinat. Tambahan POI, jalan/pedestrian, properti, transaksi, serta survei hanya boleh masuk setelah sumber, timestamp, radius, dan kunci spasialnya tersedia.
 4. **Validation:** rekonsiliasi total per lintas/tahun dengan angka kalibrasi pada sheet `Catatan_Asumsi`, pastikan 36 bulan per stasiun, lalu lakukan time-based holdout untuk forecasting. Validasi lapangan hanya dilakukan jika survey berkoordinat, bertanggal, dan memiliki observasi yang relevan tersedia.
 
-Setiap run menghasilkan `data_quality_report.json`, `feature_schema.json`, dan manifest yang berisi sumber data, rentang waktu, jumlah record, versi kode, waktu run, serta penanda `synthetic_prototype`.
+Setiap run menghasilkan `data_quality_report.json`, `feature_schema.json`, dan manifest yang berisi sumber data, rentang waktu, jumlah record, waktu run, serta penanda `synthetic_prototype`.
 
 ## Struktur target
 
@@ -61,10 +62,12 @@ ml/
   regression_scoring/{notebooks,models,outputs}/
   business_classification/{notebooks,models,outputs}/
   llm_insight/{notebooks,outputs}/
+  scripts/
   shared/{raw,processed,manifests}/
+  requirements.txt
 ```
 
-Setiap notebook membaca data dari `ml/shared`, tidak dari path Downloads. Setelah pelatihan, artefak model dan hasil dipisahkan: `.pkl` hanya berisi pipeline model/preprocessor; UI/API membaca CSV/JSON hasil yang sudah divalidasi. Jangan commit data mentah sensitif atau credential API.
+Setiap notebook membaca data dari `ml/shared`, tidak dari path Downloads. Setelah pelatihan, artefak model dan hasil dipisahkan: `.pkl` hanya berisi pipeline model/preprocessor; UI/API membaca JSON/GeoJSON handoff yang sudah divalidasi di `ml/outputs/`. Jangan commit data mentah sensitif atau credential API. Karena `scripts/` dan `shared/raw/` di-ignore, artifact handoff perlu dibangun di environment lokal yang menyediakannya lalu dipaketkan untuk deployment.
 
 ## Urutan implementasi
 
@@ -74,10 +77,10 @@ Setiap notebook membaca data dari `ml/shared`, tidak dari path Downloads. Setela
 4. Tambahkan endpoint read-only dan ubah frontend agar memakai hasil API, termasuk loading/unavailable state.
 5. Setelah data MAPID/Property Go/survei tersedia, jalankan gate regression dan classification. LLM hanya aktif sesudah hasil numerik tervalidasi.
 
-## Definition of done untuk pelatihan nanti
+## Definition of done pelatihan prototipe
 
 - Notebook dapat dijalankan ulang dari data mentah sampai artefak dan tidak memiliki leakage waktu.
 - File `.pkl`, `metrics.json`, `feature_schema.json`, manifest, dan hasil per-stasiun ditulis ke folder fitur yang sama.
 - Metrik serta batasan data dummy tampil dalam metadata hasil.
-- Endpoint dan UI memakai hasil ekspor, bukan nilai hard-coded atau contoh.
+- Endpoint dan UI memakai `station_analysis.json` atau `station_analysis.geojson`, bukan nilai hard-coded atau contoh.
 - Kegagalan quality gate mengembalikan status unavailable, bukan skor/rekomendasi palsu.

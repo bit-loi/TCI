@@ -1,0 +1,1391 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8482,
+          -6.4407
+        ]
+      },
+      "properties": {
+        "station_id": "citayam",
+        "station_name": "Citayam",
+        "investment_score": 76.84,
+        "rank": 1,
+        "typology_label": "Hub aktivitas tinggi",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.7891,
+          -6.5944
+        ]
+      },
+      "properties": {
+        "station_id": "bogor",
+        "station_name": "Bogor",
+        "investment_score": 75.25,
+        "rank": 2,
+        "typology_label": "Hub aktivitas tinggi",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.85,
+          -6.2107
+        ]
+      },
+      "properties": {
+        "station_id": "manggarai",
+        "station_name": "Manggarai",
+        "investment_score": 71.38,
+        "rank": 3,
+        "typology_label": "Hub aktivitas tinggi",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8133,
+          -6.1352
+        ]
+      },
+      "properties": {
+        "station_id": "jakartakota",
+        "station_name": "Jakarta Kota",
+        "investment_score": 70.56,
+        "rank": 4,
+        "typology_label": "Hub aktivitas tinggi",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8125,
+          -6.1868
+        ]
+      },
+      "properties": {
+        "station_id": "tanahabang",
+        "station_name": "Tanah Abang",
+        "investment_score": 59.61,
+        "rank": 5,
+        "typology_label": "Hub aktivitas tinggi",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8703,
+          -6.2149
+        ]
+      },
+      "properties": {
+        "station_id": "jatinegara",
+        "station_name": "Jatinegara",
+        "investment_score": 56.68,
+        "rank": 6,
+        "typology_label": "Hub aktivitas tinggi",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8156,
+          -6.1325
+        ]
+      },
+      "properties": {
+        "station_id": "kampungbandan",
+        "station_name": "Kampung Bandan",
+        "investment_score": 56.46,
+        "rank": 7,
+        "typology_label": "Hub aktivitas tinggi",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.9896,
+          -6.238
+        ]
+      },
+      "properties": {
+        "station_id": "bekasi",
+        "station_name": "Bekasi",
+        "investment_score": 56.16,
+        "rank": 8,
+        "typology_label": "Hub aktivitas tinggi",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8054,
+          -6.162
+        ]
+      },
+      "properties": {
+        "station_id": "duri",
+        "station_name": "Duri",
+        "investment_score": 55.75,
+        "rank": 9,
+        "typology_label": "Hub aktivitas tinggi",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.6319,
+          -6.1783
+        ]
+      },
+      "properties": {
+        "station_id": "tangerang",
+        "station_name": "Tangerang",
+        "investment_score": 50.41,
+        "rank": 10,
+        "typology_label": "Hub aktivitas tinggi",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.6817,
+          -6.3153
+        ]
+      },
+      "properties": {
+        "station_id": "rawabuntu",
+        "station_name": "Rawa Buntu",
+        "investment_score": 39.48,
+        "rank": 11,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.7823,
+          -6.2439
+        ]
+      },
+      "properties": {
+        "station_id": "kebayoran",
+        "station_name": "Kebayoran",
+        "investment_score": 38.61,
+        "rank": 12,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.1602,
+          -6.3502
+        ]
+      },
+      "properties": {
+        "station_id": "rangkasbitung",
+        "station_name": "Rangkasbitung",
+        "investment_score": 38.59,
+        "rank": 13,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.4999,
+          -6.3789
+        ]
+      },
+      "properties": {
+        "station_id": "parungpanjang",
+        "station_name": "Parung Panjang",
+        "investment_score": 37.46,
+        "rank": 14,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8622,
+          -6.2432
+        ]
+      },
+      "properties": {
+        "station_id": "cawang",
+        "station_name": "Cawang",
+        "investment_score": 37.07,
+        "rank": 15,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.6707,
+          -6.3208
+        ]
+      },
+      "properties": {
+        "station_id": "serpong",
+        "station_name": "Serpong",
+        "investment_score": 37.01,
+        "rank": 16,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8508,
+          -6.2255
+        ]
+      },
+      "properties": {
+        "station_id": "tebet",
+        "station_name": "Tebet",
+        "investment_score": 36.46,
+        "rank": 17,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.6265,
+          -6.3167
+        ]
+      },
+      "properties": {
+        "station_id": "cisauk",
+        "station_name": "Cisauk",
+        "investment_score": 35.96,
+        "rank": 18,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8177,
+          -6.3953
+        ]
+      },
+      "properties": {
+        "station_id": "depokbaru",
+        "station_name": "Depok Baru",
+        "investment_score": 35.85,
+        "rank": 19,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8188,
+          -6.4004
+        ]
+      },
+      "properties": {
+        "station_id": "depok",
+        "station_name": "Depok",
+        "investment_score": 35.57,
+        "rank": 20,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8149,
+          -6.4696
+        ]
+      },
+      "properties": {
+        "station_id": "bojonggede",
+        "station_name": "Bojonggede",
+        "investment_score": 33.94,
+        "rank": 21,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.3888,
+          -6.3474
+        ]
+      },
+      "properties": {
+        "station_id": "tenjo",
+        "station_name": "Tenjo",
+        "investment_score": 33.44,
+        "rank": 22,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.3494,
+          -6.301
+        ]
+      },
+      "properties": {
+        "station_id": "tigaraksa",
+        "station_name": "Tigaraksa",
+        "investment_score": 32.77,
+        "rank": 23,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8309,
+          -6.1663
+        ]
+      },
+      "properties": {
+        "station_id": "juanda",
+        "station_name": "Juanda",
+        "investment_score": 31.74,
+        "rank": 24,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.842,
+          -6.2839
+        ]
+      },
+      "properties": {
+        "station_id": "pasarminggu",
+        "station_name": "Pasar Minggu",
+        "investment_score": 31.68,
+        "rank": 25,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.7241,
+          -6.2694
+        ]
+      },
+      "properties": {
+        "station_id": "jurangmangu",
+        "station_name": "Jurangmangu",
+        "investment_score": 31.38,
+        "rank": 26,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.7139,
+          -6.283
+        ]
+      },
+      "properties": {
+        "station_id": "sudimara",
+        "station_name": "Sudimara",
+        "investment_score": 30.8,
+        "rank": 27,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8477,
+          -6.3036
+        ]
+      },
+      "properties": {
+        "station_id": "tanjungbarat",
+        "station_name": "Tanjung Barat",
+        "investment_score": 30.8,
+        "rank": 28,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8225,
+          -6.2074
+        ]
+      },
+      "properties": {
+        "station_id": "sudirman",
+        "station_name": "Sudirman",
+        "investment_score": 30.7,
+        "rank": 29,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.7943,
+          -6.2003
+        ]
+      },
+      "properties": {
+        "station_id": "palmerah",
+        "station_name": "Palmerah",
+        "investment_score": 30.05,
+        "rank": 30,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.85,
+          -6.2569
+        ]
+      },
+      "properties": {
+        "station_id": "durenkalibata",
+        "station_name": "Duren Kalibata",
+        "investment_score": 30.01,
+        "rank": 31,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.4478,
+          -6.3585
+        ]
+      },
+      "properties": {
+        "station_id": "cilejit",
+        "station_name": "Cilejit",
+        "investment_score": 30.0,
+        "rank": 32,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.9765,
+          -6.2333
+        ]
+      },
+      "properties": {
+        "station_id": "kranji",
+        "station_name": "Kranji",
+        "investment_score": 29.8,
+        "rank": 33,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8309,
+          -6.3608
+        ]
+      },
+      "properties": {
+        "station_id": "univindonesia",
+        "station_name": "Universitas Indonesia",
+        "investment_score": 29.46,
+        "rank": 34,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.7027,
+          -6.1541
+        ]
+      },
+      "properties": {
+        "station_id": "kalideres",
+        "station_name": "Kalideres",
+        "investment_score": 29.32,
+        "rank": 35,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.7899,
+          -6.1633
+        ]
+      },
+      "properties": {
+        "station_id": "grogol",
+        "station_name": "Grogol",
+        "investment_score": 28.92,
+        "rank": 36,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8378,
+          -6.3345
+        ]
+      },
+      "properties": {
+        "station_id": "univpancasila",
+        "station_name": "Universitas Pancasila",
+        "investment_score": 28.84,
+        "rank": 37,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8127,
+          -6.5232
+        ]
+      },
+      "properties": {
+        "station_id": "cilebut",
+        "station_name": "Cilebut",
+        "investment_score": 28.8,
+        "rank": 38,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8365,
+          -6.1934
+        ]
+      },
+      "properties": {
+        "station_id": "cikini",
+        "station_name": "Cikini",
+        "investment_score": 28.52,
+        "rank": 39,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.7345,
+          -6.2882
+        ]
+      },
+      "properties": {
+        "station_id": "pondokranji",
+        "station_name": "Pondok Ranji",
+        "investment_score": 28.39,
+        "rank": 40,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8218,
+          -6.2039
+        ]
+      },
+      "properties": {
+        "station_id": "sudirmanbaru",
+        "station_name": "BNI City",
+        "investment_score": 28.06,
+        "rank": 41,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.7328,
+          -6.1583
+        ]
+      },
+      "properties": {
+        "station_id": "rawabuaya",
+        "station_name": "Rawa Buaya",
+        "investment_score": 27.97,
+        "rank": 42,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8443,
+          -6.3222
+        ]
+      },
+      "properties": {
+        "station_id": "lentengagung",
+        "station_name": "Lenteng Agung",
+        "investment_score": 27.95,
+        "rank": 43,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.9445,
+          -6.1848
+        ]
+      },
+      "properties": {
+        "station_id": "cakung",
+        "station_name": "Cakung",
+        "investment_score": 27.84,
+        "rank": 44,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.841,
+          -6.29
+        ]
+      },
+      "properties": {
+        "station_id": "pasarminggubaru",
+        "station_name": "Pasar Minggu Baru",
+        "investment_score": 27.77,
+        "rank": 45,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.2789,
+          -6.2757
+        ]
+      },
+      "properties": {
+        "station_id": "maja",
+        "station_name": "Maja",
+        "investment_score": 27.47,
+        "rank": 46,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8912,
+          -6.2126
+        ]
+      },
+      "properties": {
+        "station_id": "klender",
+        "station_name": "Klender",
+        "investment_score": 27.33,
+        "rank": 47,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.3168,
+          -6.2947
+        ]
+      },
+      "properties": {
+        "station_id": "cikoya",
+        "station_name": "Cikoya",
+        "investment_score": 27.23,
+        "rank": 48,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.4128,
+          -6.3389
+        ]
+      },
+      "properties": {
+        "station_id": "daru",
+        "station_name": "Daru",
+        "investment_score": 27.17,
+        "rank": 49,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          107.1526,
+          -6.2624
+        ]
+      },
+      "properties": {
+        "station_id": "cikarang",
+        "station_name": "Cikarang",
+        "investment_score": 26.95,
+        "rank": 50,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.831,
+          -6.3691
+        ]
+      },
+      "properties": {
+        "station_id": "pondokcina",
+        "station_name": "Pondok Cina",
+        "investment_score": 26.45,
+        "rank": 51,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          107.1043,
+          -6.2411
+        ]
+      },
+      "properties": {
+        "station_id": "cibitung",
+        "station_name": "Cibitung",
+        "investment_score": 26.4,
+        "rank": 52,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8177,
+          -6.2011
+        ]
+      },
+      "properties": {
+        "station_id": "karet",
+        "station_name": "Karet",
+        "investment_score": 26.12,
+        "rank": 53,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8317,
+          -6.1848
+        ]
+      },
+      "properties": {
+        "station_id": "gondangdia",
+        "station_name": "Gondangdia",
+        "investment_score": 26.03,
+        "rank": 54,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          107.1391,
+          -6.2647
+        ]
+      },
+      "properties": {
+        "station_id": "telagamurni",
+        "station_name": "Metland Telaga Murni",
+        "investment_score": 25.38,
+        "rank": 55,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8618,
+          -6.4735
+        ]
+      },
+      "properties": {
+        "station_id": "pondokrajeg",
+        "station_name": "Pondok Rajeg",
+        "investment_score": 25.2,
+        "rank": 56,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.5946,
+          -6.3216
+        ]
+      },
+      "properties": {
+        "station_id": "cicayur",
+        "station_name": "Cicayur",
+        "investment_score": 25.15,
+        "rank": 57,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.2299,
+          -6.2793
+        ]
+      },
+      "properties": {
+        "station_id": "citeras",
+        "station_name": "Citeras",
+        "investment_score": 24.99,
+        "rank": 58,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.828,
+          -6.1385
+        ]
+      },
+      "properties": {
+        "station_id": "jayakarta",
+        "station_name": "Jayakarta",
+        "investment_score": 24.98,
+        "rank": 59,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          107.0087,
+          -6.2321
+        ]
+      },
+      "properties": {
+        "station_id": "bekasitimur",
+        "station_name": "Bekasi Timur",
+        "investment_score": 24.68,
+        "rank": 60,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8988,
+          -6.2159
+        ]
+      },
+      "properties": {
+        "station_id": "klenderbaru",
+        "station_name": "Klender Baru",
+        "investment_score": 24.49,
+        "rank": 61,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.9101,
+          -6.2088
+        ]
+      },
+      "properties": {
+        "station_id": "buaran",
+        "station_name": "Buaran",
+        "investment_score": 23.89,
+        "rank": 62,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8628,
+          -6.2118
+        ]
+      },
+      "properties": {
+        "station_id": "matraman",
+        "station_name": "Matraman",
+        "investment_score": 23.84,
+        "rank": 63,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.6432,
+          -6.1662
+        ]
+      },
+      "properties": {
+        "station_id": "tanahtinggi",
+        "station_name": "Tanah Tinggi",
+        "investment_score": 23.76,
+        "rank": 64,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.7629,
+          -6.1583
+        ]
+      },
+      "properties": {
+        "station_id": "tamankota",
+        "station_name": "Taman Kota",
+        "investment_score": 23.64,
+        "rank": 65,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.7767,
+          -6.1583
+        ]
+      },
+      "properties": {
+        "station_id": "pesing",
+        "station_name": "Pesing",
+        "investment_score": 23.46,
+        "rank": 66,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8807,
+          -6.1147
+        ]
+      },
+      "properties": {
+        "station_id": "tanjungpriok",
+        "station_name": "Tanjung Priok",
+        "investment_score": 23.38,
+        "rank": 67,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.6863,
+          -6.1553
+        ]
+      },
+      "properties": {
+        "station_id": "poris",
+        "station_name": "Poris",
+        "investment_score": 23.32,
+        "rank": 68,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.7994,
+          -6.1443
+        ]
+      },
+      "properties": {
+        "station_id": "angke",
+        "station_name": "Angke",
+        "investment_score": 23.06,
+        "rank": 69,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8546,
+          -6.4825
+        ]
+      },
+      "properties": {
+        "station_id": "cibinong",
+        "station_name": "Cibinong",
+        "investment_score": 22.45,
+        "rank": 70,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8248,
+          -6.1552
+        ]
+      },
+      "properties": {
+        "station_id": "sawahbesar",
+        "station_name": "Sawah Besar",
+        "investment_score": 22.04,
+        "rank": 71,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8258,
+          -6.1467
+        ]
+      },
+      "properties": {
+        "station_id": "manggabesar",
+        "station_name": "Mangga Besar",
+        "investment_score": 21.9,
+        "rank": 72,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          107.0397,
+          -6.2389
+        ]
+      },
+      "properties": {
+        "station_id": "tambun",
+        "station_name": "Tambun",
+        "investment_score": 21.49,
+        "rank": 73,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8631,
+          -6.5153
+        ]
+      },
+      "properties": {
+        "station_id": "nambo",
+        "station_name": "Nambo",
+        "investment_score": 21.12,
+        "rank": 74,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.7476,
+          -6.1583
+        ]
+      },
+      "properties": {
+        "station_id": "bojongindah",
+        "station_name": "Bojong Indah",
+        "investment_score": 20.12,
+        "rank": 75,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.6605,
+          -6.1601
+        ]
+      },
+      "properties": {
+        "station_id": "batuceper",
+        "station_name": "Batu Ceper",
+        "investment_score": 19.82,
+        "rank": 76,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.8321,
+          -6.1236
+        ]
+      },
+      "properties": {
+        "station_id": "ancol",
+        "station_name": "Ancol",
+        "investment_score": 18.47,
+        "rank": 77,
+        "typology_label": "Aktivitas lebih rendah",
+        "source_status": "synthetic_prototype"
+      }
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Katalog dataset training TCI
 
-Semua dataset dalam struktur `ml/` saat ini adalah **synthetic training only**. Dataset tersebut dibuat untuk membangun dan menguji pipeline, bukan sebagai bukti kondisi lapangan atau dasar keputusan investasi.
+Semua dataset dan hasil dalam struktur `ml/` saat ini berstatus **`synthetic_prototype`**. Dataset tersebut dibuat untuk membangun, menguji, dan mendemonstrasikan pipeline; bukan sebagai bukti kondisi lapangan atau dasar keputusan investasi.
 
 | Fitur | Dataset | Grain | Target / tujuan |
 | --- | --- | --- | --- |
@@ -12,7 +12,7 @@ Semua dataset dalam struktur `ml/` saat ini adalah **synthetic training only**. 
 
 ## Asal dan reproduksibilitas
 
-Workbook yang diberikan tim disalin sebagai sumber mentah ke `shared/raw/Dummy_Dataset_Volume_Penumpang_KRL_Jabodetabek.xlsx`. Script `scripts/generate_synthetic_training_datasets.py` membaca workbook itu dan membangkitkan seluruh turunan dengan seed `20260911`. Manifest, jumlah record, keterbatasan, serta nama generator berada pada `shared/manifests/synthetic_dataset_manifest.json`.
+Workbook yang diberikan tim disalin sebagai sumber mentah ke `shared/raw/Dummy_Dataset_Volume_Penumpang_KRL_Jabodetabek.xlsx`. Script lokal `scripts/generate_synthetic_training_datasets.py` membaca workbook itu dan membangkitkan seluruh turunan dengan seed `20260911`. Karena `scripts/` dan `shared/raw/` di-ignore, clone baru dapat melatih dari dataset turunan yang sudah di-version, tetapi tidak dapat membangkitkan ulang dataset tanpa menerima dua input lokal tersebut. Manifest, jumlah record, keterbatasan, serta nama generator berada pada `shared/manifests/synthetic_dataset_manifest.json`.
 
 `shared/processed/station_crosswalk.csv` adalah kontrak join: `station_code` dari dataset sumber ke `station_id` frontend. Selalu gunakan crosswalk ini saat membuat artefak model/API.
 

@@ -1,15 +1,15 @@
 {
-  "generated_at_utc": "2026-09-11T12:33:33+00:00",
+  "generated_at_utc": "2026-09-11T14:01:17+00:00",
   "generator": "ml/scripts/generate_synthetic_training_datasets.py",
   "seed": 20260911,
   "source_workbook": "Dummy_Dataset_Volume_Penumpang_KRL_Jabodetabek.xlsx",
-  "source_status": "synthetic_training_only",
+  "source_status": "synthetic_prototype",
   "record_counts": {
     "station_crosswalk": 77,
     "passenger_volume_monthly": 2772,
     "station_master": 77,
     "station_month_features": 2772,
-    "location_opportunity_training": 2772,
+    "location_opportunity_training": 8316,
     "station_insight_context": 77,
     "smart_query_evaluation": 231
   },

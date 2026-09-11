@@ -21,7 +21,7 @@ from openpyxl import load_workbook
 SEED = 20260911
 ROOT = Path(__file__).resolve().parents[2]
 RAW_WORKBOOK = ROOT / "ml" / "shared" / "raw" / "Dummy_Dataset_Volume_Penumpang_KRL_Jabodetabek.xlsx"
-SYNTHETIC_STATUS = "synthetic_training_only"
+SYNTHETIC_STATUS = "synthetic_prototype"
 
 
 def norm(values: list[float]) -> list[float]:
@@ -217,6 +217,8 @@ def main() -> None:
                 "annual_passengers_2025": row[annual_key],
                 "daily_passengers_2025": row[daily_key],
                 "yoy_growth_2025_pct": number(float(row[yoy_key]) * 100, 2),
+                "business_density_750m": context["business_base"],
+                "pedestrian_access_index": number(context["accessibility"] * 100, 2),
                 "source_status": SYNTHETIC_STATUS,
             }
         )
@@ -278,50 +280,56 @@ def main() -> None:
         regression_rows.append(regression_row)
         latest_by_station[code] = regression_row
 
-        radius = (500, 750, 1000)[(int(source["Tahun"]) + month + int(code.split("-")[1])) % 3]
-        radius_factor = radius / 750
-        footfall = max(90, int(passenger / 30 * (0.25 + 0.15 * pedestrian_access) * radius_factor + random.gauss(0, 75)))
-        food_poi = max(0, round((0.28 * business_density + 12 * context["office_index"] + 7 * context["residential_index"]) * radius_factor + random.gauss(0, 3)))
-        drink_poi = max(0, round((0.16 * business_density + 16 * context["office_index"] + 6 * context["education_index"]) * radius_factor + random.gauss(0, 3)))
-        hobby_poi = max(0, round((0.08 * business_density + 11 * context["residential_index"] + 11 * context["education_index"]) * radius_factor + random.gauss(0, 2)))
-        book_poi = max(0, round((0.025 * business_density + 15 * context["education_index"]) * radius_factor + random.gauss(0, 1.5)))
-        other_poi = max(0, round((0.22 * business_density + 10 * context["centrality"]) * radius_factor + random.gauss(0, 4)))
-        opportunity = {
-            "Makanan": 0.34 * footfall / 1000 + 0.26 * context["office_index"] + 0.22 * context["residential_index"] - 0.018 * food_poi + 0.06 * season,
-            "Minuman": 0.29 * footfall / 1000 + 0.37 * context["office_index"] + 0.20 * context["education_index"] - 0.020 * drink_poi + 0.05 * season,
-            "Hobi": 0.16 * footfall / 1000 + 0.38 * context["residential_index"] + 0.36 * context["education_index"] - 0.022 * hobby_poi,
-            "Toko Buku": 0.11 * footfall / 1000 + 0.58 * context["education_index"] + 0.12 * context["residential_index"] - 0.035 * book_poi,
-            "Lainnya": 0.22 * footfall / 1000 + 0.30 * context["centrality"] + 0.12 * context["activity"] - 0.015 * other_poi,
-        }
-        selected_category = max(opportunity, key=opportunity.get)
-        sorted_scores = sorted(opportunity.values(), reverse=True)
-        confidence = clamp(0.50 + (sorted_scores[0] - sorted_scores[1]) * 0.32 + random.gauss(0, 0.03), 0.50, 0.92)
-        classification_rows.append(
-            {
-                "record_id": f"CLS-{code}-{period}-{radius}",
-                "station_code": code,
-                "station_id": context["station_id"],
-                "station_name": station[name_key],
-                "period": period,
-                "buffer_radius_m": radius,
-                "estimated_daily_footfall": footfall,
-                "passenger_volume_monthly": int(passenger),
-                "food_poi_count": food_poi,
-                "beverage_poi_count": drink_poi,
-                "hobby_poi_count": hobby_poi,
-                "bookstore_poi_count": book_poi,
-                "other_retail_poi_count": other_poi,
-                "office_activity_index": number(context["office_index"] * 100, 2),
-                "residential_activity_index": number(context["residential_index"] * 100, 2),
-                "education_activity_index": number(context["education_index"] * 100, 2),
-                "pedestrian_access_index": number(pedestrian_access * 100, 2),
-                "estimated_rental_index_rp_thousand_m2_month": number(rental_index, 2),
-                "recommended_business_category": selected_category,
-                "synthetic_recommendation_confidence": number(confidence, 3),
-                "label_provenance": "synthetic_opportunity_formula_with_seeded_noise",
-                "source_status": SYNTHETIC_STATUS,
+        location_id = f"LOC-{code}"
+        location_latitude = number(float(station[lat_key]) + ((int(code.split("-")[1]) % 5) - 2) * 0.0012, 6)
+        location_longitude = number(float(station[lng_key]) + ((int(code.split("-")[1]) % 7) - 3) * 0.0012, 6)
+        for radius in (500, 750, 1000):
+            radius_factor = radius / 750
+            footfall = max(90, int(passenger / 30 * (0.25 + 0.15 * pedestrian_access) * radius_factor + random.gauss(0, 75)))
+            food_poi = max(0, round((0.28 * business_density + 12 * context["office_index"] + 7 * context["residential_index"]) * radius_factor + random.gauss(0, 3)))
+            drink_poi = max(0, round((0.16 * business_density + 16 * context["office_index"] + 6 * context["education_index"]) * radius_factor + random.gauss(0, 3)))
+            hobby_poi = max(0, round((0.08 * business_density + 11 * context["residential_index"] + 11 * context["education_index"]) * radius_factor + random.gauss(0, 2)))
+            book_poi = max(0, round((0.025 * business_density + 15 * context["education_index"]) * radius_factor + random.gauss(0, 1.5)))
+            other_poi = max(0, round((0.22 * business_density + 10 * context["centrality"]) * radius_factor + random.gauss(0, 4)))
+            opportunity = {
+                "Makanan": 0.34 * footfall / 1000 + 0.26 * context["office_index"] + 0.22 * context["residential_index"] - 0.018 * food_poi + 0.06 * season,
+                "Minuman": 0.29 * footfall / 1000 + 0.37 * context["office_index"] + 0.20 * context["education_index"] - 0.020 * drink_poi + 0.05 * season,
+                "Hobi": 0.16 * footfall / 1000 + 0.38 * context["residential_index"] + 0.36 * context["education_index"] - 0.022 * hobby_poi,
+                "Toko Buku": 0.11 * footfall / 1000 + 0.58 * context["education_index"] + 0.12 * context["residential_index"] - 0.035 * book_poi,
+                "Lainnya": 0.22 * footfall / 1000 + 0.30 * context["centrality"] + 0.12 * context["activity"] - 0.015 * other_poi,
             }
-        )
+            selected_category = max(opportunity, key=opportunity.get)
+            sorted_scores = sorted(opportunity.values(), reverse=True)
+            confidence = clamp(0.50 + (sorted_scores[0] - sorted_scores[1]) * 0.32 + random.gauss(0, 0.03), 0.50, 0.92)
+            classification_rows.append(
+                {
+                    "record_id": f"CLS-{code}-{period}-{radius}",
+                    "location_id": location_id,
+                    "latitude": location_latitude,
+                    "longitude": location_longitude,
+                    "station_code": code,
+                    "station_id": context["station_id"],
+                    "station_name": station[name_key],
+                    "period": period,
+                    "buffer_radius_m": radius,
+                    "estimated_daily_footfall": footfall,
+                    "passenger_volume_monthly": int(passenger),
+                    "food_poi_count": food_poi,
+                    "beverage_poi_count": drink_poi,
+                    "hobby_poi_count": hobby_poi,
+                    "bookstore_poi_count": book_poi,
+                    "other_retail_poi_count": other_poi,
+                    "office_activity_index": number(context["office_index"] * 100, 2),
+                    "residential_activity_index": number(context["residential_index"] * 100, 2),
+                    "education_activity_index": number(context["education_index"] * 100, 2),
+                    "pedestrian_access_index": number(pedestrian_access * 100, 2),
+                    "estimated_rental_index_rp_thousand_m2_month": number(rental_index, 2),
+                    "recommended_business_category": selected_category,
+                    "synthetic_recommendation_confidence": number(confidence, 3),
+                    "label_provenance": "synthetic_opportunity_formula_with_seeded_noise",
+                    "source_status": SYNTHETIC_STATUS,
+                }
+            )
 
     llm_context_rows = []
     llm_eval_rows = []
