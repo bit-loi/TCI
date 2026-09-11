@@ -12,7 +12,17 @@ const layers = [
 		id: "heatmap",
 		label: "Heatmap Hotspot",
 		icon: (
-			<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="18"
+				height="18"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="2"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			>
 				<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
 			</svg>
 		),
@@ -22,7 +32,17 @@ const layers = [
 		id: "tod",
 		label: "Property/ TOD",
 		icon: (
-			<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="18"
+				height="18"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="2"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			>
 				<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
 				<polyline points="9 22 9 12 15 12 15 22" />
 			</svg>
@@ -33,7 +53,17 @@ const layers = [
 		id: "typology",
 		label: "Tipologi Stasiun",
 		icon: (
-			<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="18"
+				height="18"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="2"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			>
 				<rect x="3" y="3" width="7" height="7" />
 				<rect x="14" y="3" width="7" height="7" />
 				<rect x="14" y="14" width="7" height="7" />
@@ -46,7 +76,17 @@ const layers = [
 		id: "survey",
 		label: "Survei Lapangan",
 		icon: (
-			<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="18"
+				height="18"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="2"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			>
 				<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
 				<polyline points="14 2 14 8 20 8" />
 				<line x1="16" y1="13" x2="8" y2="13" />
@@ -62,11 +102,22 @@ const features = [
 	{
 		id: "hotspot-finder",
 		label: "Hotspot Finder",
-		description: "Temukan area hotspot ekonomi di sekitar stasiun KRL dengan analisis spasial berbasis data real-time.",
+		description:
+			"Temukan area hotspot ekonomi di sekitar stasiun KRL dengan analisis spasial berbasis data real-time.",
 		tier: "A",
 		color: "from-[#60d2cd] to-[#3281d8]",
 		icon: (
-			<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="28"
+				height="28"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="1.5"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			>
 				<circle cx="11" cy="11" r="8" />
 				<line x1="21" y1="21" x2="16.65" y2="16.65" />
 				<line x1="11" y1="8" x2="11" y2="14" />
@@ -78,11 +129,22 @@ const features = [
 	{
 		id: "investment-score",
 		label: "Station Investment Score",
-		description: "Skor investasi stasiun berdasarkan potensi ekonomi, aksesibilitas, dan tingkat perkembangan kawasan.",
+		description:
+			"Skor investasi stasiun berdasarkan potensi ekonomi, aksesibilitas, dan tingkat perkembangan kawasan.",
 		tier: "A",
 		color: "from-[#60d2cd] to-[#3281d8]",
 		icon: (
-			<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="28"
+				height="28"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="1.5"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			>
 				<line x1="12" y1="1" x2="12" y2="23" />
 				<path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
 			</svg>
@@ -92,11 +154,22 @@ const features = [
 	{
 		id: "trend-dashboard",
 		label: "Trend Dashboard",
-		description: "Dashboard visualisasi tren pertumbuhan ekonomi dan properti di sekitar koridor transportasi massal.",
+		description:
+			"Dashboard visualisasi tren pertumbuhan ekonomi dan properti di sekitar koridor transportasi massal.",
 		tier: "B",
 		color: "from-[#3a8fd6] to-[#2f7ed6]",
 		icon: (
-			<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="28"
+				height="28"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="1.5"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			>
 				<line x1="18" y1="20" x2="18" y2="10" />
 				<line x1="12" y1="20" x2="12" y2="4" />
 				<line x1="6" y1="20" x2="6" y2="14" />
@@ -107,11 +180,22 @@ const features = [
 	{
 		id: "station-typology",
 		label: "Station Typology",
-		description: "Klasifikasi stasiun berdasarkan karakteristik lingkungan sekitar menggunakan machine learning.",
+		description:
+			"Klasifikasi stasiun berdasarkan karakteristik lingkungan sekitar menggunakan machine learning.",
 		tier: "A",
 		color: "from-[#60d2cd] to-[#3281d8]",
 		icon: (
-			<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="28"
+				height="28"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="1.5"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			>
 				<rect x="3" y="3" width="7" height="7" />
 				<rect x="14" y="3" width="7" height="7" />
 				<rect x="14" y="14" width="7" height="7" />
@@ -123,11 +207,22 @@ const features = [
 	{
 		id: "survey-data",
 		label: "Survey Data",
-		description: "Akses dan kelola data survei lapangan yang dikumpulkan dari responden di sekitar stasiun.",
+		description:
+			"Akses dan kelola data survei lapangan yang dikumpulkan dari responden di sekitar stasiun.",
 		tier: "C",
 		color: "from-[#60d2cd] to-[#3281d8]",
 		icon: (
-			<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="28"
+				height="28"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="1.5"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			>
 				<path d="M9 11l3 3L22 4" />
 				<path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
 			</svg>
@@ -137,11 +232,22 @@ const features = [
 	{
 		id: "buffer-analyzer",
 		label: "Radius/Buffer Analyzer",
-		description: "Analisis zona buffer di sekitar stasiun untuk melihat distribusi POI dan potensi bisnis.",
+		description:
+			"Analisis zona buffer di sekitar stasiun untuk melihat distribusi POI dan potensi bisnis.",
 		tier: "B",
 		color: "from-[#3a8fd6] to-[#2f7ed6]",
 		icon: (
-			<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="28"
+				height="28"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="1.5"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			>
 				<circle cx="12" cy="12" r="10" />
 				<circle cx="12" cy="12" r="6" />
 				<circle cx="12" cy="12" r="2" />
@@ -199,34 +305,6 @@ export default function Dashboard() {
 
 				{/* Layers */}
 				<div className="flex-1 overflow-y-auto px-4 py-6">
-					<p className="mb-3 px-2 text-xs font-semibold uppercase tracking-wider text-[#868686]">
-						Layers
-					</p>
-					<nav className="flex flex-col gap-1">
-						{layers.map((layer) => {
-							const isActive = location.pathname === layer.path;
-							return (
-								<Link
-									key={layer.id}
-									to={layer.path}
-									onClick={() => setSidebarOpen(false)}
-									className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
-										isActive
-											? "bg-[#f0f6ff] text-[#3a8fd6]"
-											: "text-[#555555] hover:bg-[#f5f8ff] hover:text-[#3a8fd6]"
-									}`}
-								>
-									<span className={isActive ? "text-[#3a8fd6]" : "text-[#868686]"}>
-										{layer.icon}
-									</span>
-									{layer.label}
-								</Link>
-							);
-						})}
-					</nav>
-
-					<div className="my-6 h-px bg-[#e8eef6]" />
-
 					{/* Features */}
 					<p className="mb-3 px-2 text-xs font-semibold uppercase tracking-wider text-[#868686]">
 						Fitur
@@ -239,13 +317,16 @@ export default function Dashboard() {
 									key={feature.id}
 									to={feature.path}
 									onClick={() => setSidebarOpen(false)}
+									target="_blank"
 									className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
 										isActive
 											? "bg-[#f0f6ff] text-[#3a8fd6]"
 											: "text-[#555555] hover:bg-[#f5f8ff] hover:text-[#3a8fd6]"
 									}`}
 								>
-									<span className={isActive ? "text-[#3a8fd6]" : "text-[#868686]"}>
+									<span
+										className={isActive ? "text-[#3a8fd6]" : "text-[#868686]"}
+									>
 										{feature.icon}
 									</span>
 									{feature.label}
@@ -277,7 +358,17 @@ export default function Dashboard() {
 							className="rounded-lg p-1.5 text-[#868686] transition-colors hover:bg-red-50 hover:text-red-500"
 							aria-label="Logout"
 						>
-							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="18"
+								height="18"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								strokeWidth="2"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							>
 								<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
 								<polyline points="16 17 21 12 16 7" />
 								<line x1="21" y1="12" x2="9" y2="12" />
@@ -296,7 +387,17 @@ export default function Dashboard() {
 						className="mr-4 rounded-lg p-2 text-[#555555] hover:bg-[#f0f6ff] lg:hidden"
 						aria-label="Buka menu"
 					>
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="20"
+							height="20"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							strokeWidth="2"
+							strokeLinecap="round"
+							strokeLinejoin="round"
+						>
 							<line x1="3" y1="12" x2="21" y2="12" />
 							<line x1="3" y1="6" x2="21" y2="6" />
 							<line x1="3" y1="18" x2="21" y2="18" />
@@ -376,7 +477,18 @@ export default function Dashboard() {
 
 									<div className="mt-4 flex items-center text-sm font-medium text-[#3a8fd6] opacity-0 transition-opacity group-hover:opacity-100">
 										Buka
-										<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="14"
+											height="14"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											strokeWidth="2"
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											className="ml-1"
+										>
 											<path d="M5 12h14" />
 											<path d="m12 5 7 7-7 7" />
 										</svg>

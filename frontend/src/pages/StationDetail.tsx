@@ -4,37 +4,28 @@ import { useState } from "react";
 
 import { X } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
 
-import { KRL_STATIONS } from "@/data/krl_stations";
+import { useStationDetail, useStationForecast } from "@/hooks/useStations";
 
 export default function StationDetail() {
 	const { id } = useParams();
 	const navigate = useNavigate();
+	const { station, insight, loading } = useStationDetail(id ?? "");
+	const { data: forecastData } = useStationForecast(id ?? "");
 
 	const [activeTab, setActiveTab] = useState("Summary");
-
 	const tabs = ["Summary", "Full Trends", "Comparison"];
 
-	const station = KRL_STATIONS.find((item) => item.id === id);
-
-	if (!station) {
-		return (
-			<div className="min-h-screen flex items-center justify-center bg-white">
-				<div className="text-center">
-					<h1 className="text-2xl font-bold text-gray-900 mb-4">
-						Stasiun tidak ditemukan
-					</h1>
-
-					<button
-						onClick={() => navigate("/map/tod")}
-						className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-lg"
-					>
-						Kembali ke Peta
-					</button>
-				</div>
+	if (loading) return <div className="min-h-screen flex items-center justify-center bg-white"><p className="text-gray-500">Memuat...</p></div>;
+	if (!station) return (
+		<div className="min-h-screen flex items-center justify-center bg-white">
+			<div className="text-center">
+				<h1 className="text-2xl font-bold text-gray-900 mb-4">Stasiun tidak ditemukan</h1>
+				<button onClick={() => navigate("/map/tod")} className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-lg">Kembali ke Peta</button>
 			</div>
-		);
-	}
+		</div>
+	);
 
 	return (
 		<div className="min-h-screen bg-white overflow-y-auto">
@@ -47,29 +38,21 @@ export default function StationDetail() {
 				</button>
 
 				<div className="grid grid-cols-3 grid-rows-2 gap-4 h-80 mb-8">
-					<div className="col-span-2 row-span-2 bg-gray-200 rounded-xl"></div>
-
-					<div className="bg-gray-200 rounded-xl"></div>
-
-					<div className="bg-gray-400 rounded-xl flex items-center justify-center text-white text-4xl font-light">
-						+3
+					<div className="col-span-2 row-span-2 bg-gray-200 rounded-xl flex items-center justify-center text-gray-400">
+						<span className="text-sm">Map view for {station.name}</span>
+					</div>
+					<div className="bg-gray-200 rounded-xl flex items-center justify-center text-gray-400 text-sm">Lines</div>
+					<div className="bg-blue-500 rounded-xl flex items-center justify-center text-white text-4xl font-light">
+						+{(station.growth?.forecast_3m_pct ?? 0).toFixed(1)}%
 					</div>
 				</div>
 
 				<div className="flex justify-between items-end border-b border-gray-200 pb-6 mb-6">
 					<div>
-						<h1 className="text-4xl font-bold text-gray-900 mb-2">
-							{station.name}
-						</h1>						<p className="text-gray-500">
-							{station.address ?? "Alamat stasiun belum tersedia"}
-						</p>
+						<h1 className="text-4xl font-bold text-gray-900 mb-2">{station.name}</h1>
+						<p className="text-gray-500">{station.lines?.join(" • ")}</p>
 					</div>
-
-					{station.rank !== undefined ? (
-						<span className="text-blue-500 border border-blue-400 px-4 py-1.5 rounded-full font-medium">
-							Rank #{station.rank}
-						</span>
-					) : null}
+					<span className="text-blue-500 border border-blue-400 px-4 py-1.5 rounded-full font-medium">Rank #{station.rank}</span>
 				</div>
 
 				<div className="flex space-x-8 mb-8 text-2xl font-light">
@@ -95,77 +78,24 @@ export default function StationDetail() {
 								<div className="flex gap-4">
 								<div className="border border-blue-100 p-6 rounded-xl flex-1">
 									<p className="text-blue-300 text-sm mb-2">Typology</p>
-
-									<p className="text-2xl text-blue-500">
-										{station.typology ?? "-"}
-									</p>
+									<p className="text-2xl text-blue-500">{station.typology?.label ?? "-"}</p>
 								</div>
-
 								<div className="border border-blue-100 p-6 rounded-xl w-1/3">
 									<p className="text-blue-300 text-sm mb-2">Growth Rate</p>
-
-									<p className="text-2xl text-blue-500">
-										{station.growth ?? "-"}
-									</p>
+									<p className="text-2xl text-blue-500">+{(station.growth?.historical_yoy_pct ?? 0).toFixed(1)}%</p>
 								</div>
 								</div>
-
 								<div className="bg-blue-50 border border-blue-200 p-6 rounded-xl relative">
-									<div className="absolute top-4 right-4 bg-blue-500 text-white rounded-full w-5 h-5 flex justify-center items-center text-xs">
-										?
-									</div>
-
 									<p className="text-blue-300 text-sm mb-2">Insight AI</p>
-
-									<p className="text-blue-600 leading-relaxed">
-										Insight AI untuk stasiun ini belum tersedia. Analisis akan
-										muncul di sini setelah data ekonomi kawasan diproses.
-									</p>
+									<p className="text-blue-600 leading-relaxed text-sm">{insight?.text ?? "Memuat insight..."}</p>
+									<p className="text-blue-300 text-xs mt-2">{station.data_status}</p>
 								</div>
 							</div>
-
 							<div className="space-y-6">
 								<div className="border border-blue-100 p-6 rounded-xl">
 									<p className="text-blue-300 text-sm mb-2">Skor Stasiun:</p>
-
-									<p className="text-4xl text-blue-500 font-medium mb-6">
-										{station.score ?? "-"}
-									</p>
-
-									<p className="text-blue-400 text-sm mb-4">Breakdown Skor:</p>
-
-									{station.score === undefined ? (
-										<p className="text-blue-400 text-sm">
-											Breakdown skor belum tersedia. Data analisis untuk
-											stasiun ini masih dalam proses.
-										</p>
-									) : (
-										<div className="space-y-3">
-											<div className="flex justify-between text-blue-500 border-b border-gray-100 pb-2">
-												<span>Aktivitas Penumpang</span>
-
-												<span>88</span>
-											</div>
-
-											<div className="flex justify-between text-blue-500 border-b border-gray-100 pb-2">
-												<span>Kegiatan Ekonomi</span>
-
-												<span>78</span>
-											</div>
-
-											<div className="flex justify-between text-blue-500 border-b border-gray-100 pb-2">
-												<span>Aksesibilitas</span>
-
-												<span>90</span>
-											</div>
-
-											<div className="flex justify-between text-blue-500 pb-2">
-												<span>Ketersediaan Properti</span>
-
-												<span>75</span>
-											</div>
-										</div>
-									)}
+									<p className="text-4xl text-blue-500 font-medium mb-6">{station.score ?? "-"} <span className="text-lg text-gray-400">/ 100</span></p>
+									<p className="text-blue-400 text-sm">Rekomendasi usaha: <strong>{station.recommendation?.category}</strong> (confidence {(station.recommendation?.confidence ?? 0) * 100}%)</p>
 								</div>
 							</div>
 						</>
@@ -227,26 +157,37 @@ export default function StationDetail() {
 
 					{activeTab === "Full Trends" && (
 						<>
-							<div className="border border-blue-100 rounded-xl p-6 h-96 flex flex-col">
-								<p className="text-blue-300 mb-4">Activity Trend</p>
-
-								<div className="bg-gray-200 flex-1 rounded flex items-center justify-center text-gray-500">
-									graph (historical)
-								</div>
+							<div className="border border-blue-100 rounded-xl p-6">
+								<p className="text-blue-300 text-sm mb-4">Activity Trend (36 Bulan Historis)</p>
+								{forecastData?.historical ? (
+									<ResponsiveContainer width="100%" height={220}>
+										<LineChart data={forecastData.historical}>
+											<CartesianGrid strokeDasharray="3 3" stroke="#e0e7ff" />
+											<XAxis dataKey="period" tick={{ fontSize: 10, fill: "#9ca3af" }} interval={5} />
+											<YAxis tick={{ fontSize: 10, fill: "#9ca3af" }} tickFormatter={v => (v / 1000000).toFixed(1) + "M"} />
+											<Tooltip formatter={(v) => (v as number)?.toLocaleString() ?? "-"} />
+											<Line type="monotone" dataKey="passengers" stroke="#3b82f6" strokeWidth={2} dot={false} />
+										</LineChart>
+									</ResponsiveContainer>
+								) : (
+									<p className="text-gray-400 text-sm h-48 flex items-center justify-center">Memuat...</p>
+								)}
 							</div>
-
-							<div className="border border-blue-100 rounded-xl p-6 h-96 flex flex-col">
-								<p className="text-blue-300 mb-4">Forecasted Trend</p>
-
-								<div className="flex-1 rounded border border-dashed border-blue-300 bg-blue-50/50 flex flex-col items-center justify-center relative">
-									<span className="absolute top-2 left-2 text-xs text-blue-400">
-										Prediksi Kepadatan Masyarakat
-									</span>
-
-									<span className="text-blue-400">
-										Time-Series Forecast Graph
-									</span>
-								</div>
+							<div className="border border-blue-100 rounded-xl p-6">
+								<p className="text-blue-300 text-sm mb-4">Forecast 3 Bulan</p>
+								{forecastData?.forecast ? (
+									<ResponsiveContainer width="100%" height={220}>
+										<LineChart data={forecastData.forecast}>
+											<CartesianGrid strokeDasharray="3 3" stroke="#e0e7ff" />
+											<XAxis dataKey="period" tick={{ fontSize: 10, fill: "#9ca3af" }} />
+											<YAxis tick={{ fontSize: 10, fill: "#9ca3af" }} tickFormatter={v => (v / 1000000).toFixed(1) + "M"} />
+											<Tooltip formatter={(v) => (v as number)?.toLocaleString() ?? "-"} />
+											<Line type="monotone" dataKey="predicted_passengers" stroke="#10b981" strokeWidth={2} dot={{ fill: "#10b981", r: 4 }} />
+										</LineChart>
+									</ResponsiveContainer>
+								) : (
+									<p className="text-gray-400 text-sm h-48 flex items-center justify-center">Memuat...</p>
+								)}
 							</div>
 						</>
 					)}

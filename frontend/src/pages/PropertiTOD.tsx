@@ -10,7 +10,7 @@ import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { useNavigate } from "react-router-dom";
 
 import Layout from "@/components/ui/Layout";
-import { KRL_STATIONS, type Station } from "@/data/krl_stations";
+import { useStations, type Station } from "@/hooks/useStations";
 
 // @ts-ignore
 delete L.Icon.Default.prototype._getIconUrl;
@@ -39,6 +39,7 @@ function MapFocus({ station }: { station: Station | null }) {
 export default function PropertiTOD() {
 	const CARTO_API_KEY = import.meta.env.VITE_CARTO_API_KEY;
 	const navigate = useNavigate();
+	const { stations } = useStations();
 
 	const cartoUrl = `https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}{r}.png?key=${CARTO_API_KEY}`;
 
@@ -53,20 +54,18 @@ export default function PropertiTOD() {
 
 	const [selectedTypologies, setSelectedTypologies] = useState<string[]>([]);
 
-	const typologies = ["High Growth", "Residential", "Underused"];
+	const typologyLabels = stations ? [...new Set(stations.map(s => s.typology?.label).filter(Boolean))] : [];
 
 	const filteredStations = useMemo(() => {
+		if (!stations) return [];
 		const keyword = search.trim().toLowerCase();
-
-		return KRL_STATIONS.filter((station) => {
-			const searchMatch =
-				!keyword ||
-				station.name.toLowerCase().includes(keyword) ||
-				station.lines.some((line) => line.toLowerCase().includes(keyword));
-
-			return searchMatch;
+		return stations.filter((station) => {
+			const searchMatch = !keyword || station.name.toLowerCase().includes(keyword) || station.lines.some((line) => line.toLowerCase().includes(keyword));
+			const scoreMatch = (station.score ?? 0) >= minScore;
+			const typeMatch = selectedTypologies.length === 0 || selectedTypologies.includes(station.typology?.label ?? "");
+			return searchMatch && scoreMatch && typeMatch;
 		});
-	}, [search]);
+	}, [stations, search, minScore, selectedTypologies]);
 
 	const toggleTypology = (type: string) => {
 		setSelectedTypologies((current) =>
@@ -101,55 +100,29 @@ export default function PropertiTOD() {
 							<Marker
 								key={station.id}
 								position={station.coord}
-								eventHandlers={{
-									click: () => handleStationSelect(station),
-								}}
+								eventHandlers={{ click: () => handleStationSelect(station) }}
 							>
 								<Popup className="station-popup" maxWidth={280}>
 									<div className="flex items-start justify-between gap-2">
 										<div className="min-w-0">
-											<p className="text-[10px] uppercase tracking-wider text-gray-400">
-												Selected Station
-											</p>
-
-											<h3 className="text-lg font-semibold text-gray-800 ">
-												{station.name}
-											</h3>
-
-											<p className="text-xs text-gray-500 mt-1">
-												{station.lines.join(" • ")}
-											</p>
+											<p className="text-[10px] uppercase tracking-wider text-gray-400">Selected Station</p>
+											<h3 className="text-lg font-semibold text-gray-800 ">{station.name}</h3>
+											<p className="text-xs text-gray-500 mt-1">{station.lines.join(" • ")}</p>
 										</div>
-
 										<div className="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
 											<TrendingUp className="w-4 h-4 text-blue-500" />
 										</div>
 									</div>
-
 									<div className="border-t border-gray-100 my-1" />
-
 									<div className="bg-gray-50 rounded-lg p-1 px-4">
-										<p className="text-[10px] uppercase tracking-wider text-gray-400">
-											KRL Lines
-										</p>
-
-										<p className="text-sm font-medium text-blue-600 mt-1">
-											{station.lines.join(" • ")}
-										</p>
+										<p className="text-[10px] uppercase tracking-wider text-gray-400">Skor</p>
+										<p className="text-sm font-medium text-blue-600 mt-1">{station.score ?? "-"} <span className="text-xs text-gray-400">/ 100</span></p>
+										<p className="text-[10px] text-gray-400">Rank #{station.rank}</p>
 									</div>
-
 									<div className="mt-1 bg-blue-50 rounded-lg px-2 py-1">
-										<p className="text-[10px] uppercase tracking-wider text-blue-400">
-											Property / TOD
-										</p>
-
-										<p className="text-xs text-blue-600 mt-1 leading-relaxed">
-											Station data loaded from the local KRL station dataset.
-											Investment scoring can be applied from the analysis
-											dataset.
-										</p>
+										<p className="text-[10px] uppercase tracking-wider text-blue-400">Tipologi</p>
+										<p className="text-xs text-blue-600 mt-1">{station.typology?.label ?? "-"}</p>
 									</div>
-
 									<button
 										type="button"
 										onClick={() => navigate(`/map/tod/stasiun/${station.id}`)}
@@ -258,18 +231,9 @@ export default function PropertiTOD() {
 					</h4>
 
 					<div className="space-y-3 mb-6">
-						{typologies.map((type) => (
-							<label
-								key={type}
-								className="flex items-center space-x-3 cursor-pointer"
-							>
-								<input
-									type="checkbox"
-									checked={selectedTypologies.includes(type)}
-									onChange={() => toggleTypology(type)}
-									className="w-4 h-4 rounded border-gray-300 text-blue-500 focus:ring-blue-500"
-								/>
-
+						{typologyLabels.map((type) => (
+							<label key={type} className="flex items-center space-x-3 cursor-pointer">
+								<input type="checkbox" checked={selectedTypologies.includes(type)} onChange={() => toggleTypology(type)} className="w-4 h-4 rounded border-gray-300 text-blue-500 focus:ring-blue-500" />
 								<span className="text-sm text-blue-500">{type}</span>
 							</label>
 						))}

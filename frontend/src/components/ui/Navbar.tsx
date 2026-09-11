@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import LogoNav from "@/assets/logo/logo-nav.png";
+import { useAuth } from "@/hooks/useAuth";
 
 type NavItem = {
 	label: string;
@@ -18,6 +19,8 @@ const navItems: NavItem[] = [
 ];
 
 const Navbar = () => {
+	const { session } = useAuth();
+
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
@@ -57,19 +60,31 @@ const Navbar = () => {
 
 					{/* Desktop Auth */}
 					<div className="ml-auto hidden items-center gap-2.5 md:flex">
-						<Link
-							to="/register"
-							className="flex h-8 w-23 items-center justify-center rounded-full border border-[#2f7ed6] text-[#868686] transition-colors hover:bg-[#2f7ed6] hover:text-white"
-						>
-							Daftar
-						</Link>
+						{session && (
+							<Link
+								to="/dashboard"
+								className="flex h-8 px-6 items-center justify-center rounded-full bg-gradient text-[#868686] transition-colors hover:bg-[#2f7ed6] hover:text-white"
+							>
+								Dashboard
+							</Link>
+						)}
+						{!session && (
+							<>
+								<Link
+									to="/register"
+									className="flex h-8 w-23 items-center justify-center rounded-full border border-[#2f7ed6] text-[#868686] transition-colors hover:bg-[#2f7ed6] hover:text-white"
+								>
+									Daftar
+								</Link>
 
-						<Link
-							to="/login"
-							className="bg-gradient button-animation flex h-8 w-23 items-center justify-center rounded-full"
-						>
-							Login
-						</Link>
+								<Link
+									to="/login"
+									className="bg-gradient button-animation flex h-8 w-23 items-center justify-center rounded-full"
+								>
+									Login
+								</Link>
+							</>
+						)}
 					</div>
 
 					{/* Mobile Burger */}

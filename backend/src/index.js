@@ -36,6 +36,9 @@ app.get("/api/health", (_req, res) => {
 	res.json({ status: "ok", timestamp: new Date().toISOString() });
 });
 
+app.use("/api/stations", require("./routes/station.routes"));
+app.use("/api/ai", require("./routes/ai.routes"));
+
 app.get("/api/auth/me", authMiddleware, (req, res) => {
 	res.json({ user: req.user });
 });

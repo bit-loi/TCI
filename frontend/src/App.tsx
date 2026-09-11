@@ -4,8 +4,8 @@ import "leaflet/dist/leaflet.css";
 
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import { AuthProvider } from "@/hooks/AuthProvider";
 import ProtectedRoute from "@/components/ui/ProtectedRoute";
+import { AuthProvider } from "@/hooks/AuthProvider";
 
 import Dashboard from "./pages/Dashboard";
 import EkonomiKawasan from "./pages/EkonomiKawasan";
@@ -40,14 +40,39 @@ function App() {
 
 				<Route
 					path="/map"
-					element={<Navigate to="/map/ekonomi-kawasan" replace />}
+					element={
+						<ProtectedRoute>
+							<Navigate to="/map/ekonomi-kawasan" replace />
+						</ProtectedRoute>
+					}
 				/>
 
-				<Route path="/map/ekonomi-kawasan" element={<EkonomiKawasan />} />
+				<Route
+					path="/map/ekonomi-kawasan"
+					element={
+						<ProtectedRoute>
+							<EkonomiKawasan />
+						</ProtectedRoute>
+					}
+				/>
 
-				<Route path="/map/tod" element={<PropertiTOD />} />
+				<Route
+					path="/map/tod"
+					element={
+						<ProtectedRoute>
+							<PropertiTOD />
+						</ProtectedRoute>
+					}
+				/>
 
-				<Route path="/map/tod/stasiun/:id" element={<StationDetail />} />
+				<Route
+					path="/map/tod/stasiun/:id"
+					element={
+						<ProtectedRoute>
+							<StationDetail />
+						</ProtectedRoute>
+					}
+				/>
 
 				<Route path="/terms" element={<Terms />} />
 				<Route path="/privacy" element={<Privacy />} />
