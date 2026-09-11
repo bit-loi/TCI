@@ -15,10 +15,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		supabase.auth.getSession().then(({ data: { session: currentSession } }) => {
-			setSession(currentSession);
-			setLoading(false);
-		});
+		supabase.auth
+			.getSession()
+			.then(({ data: { session: currentSession }, error }) => {
+				if (error) {
+					// A failed session restore must not leave the app stuck on the
+					// loading screen; treat it as logged out.
+					console.error("Gagal memuat sesi:", error.message);
+				}
+				setSession(currentSession ?? null);
+			})
+			.catch((restoreError) => {
+				console.error("Gagal memuat sesi:", restoreError);
+				setSession(null);
+			})
+			.finally(() => {
+				setLoading(false);
+			});
 
 		const {
 			data: { subscription },
@@ -31,8 +44,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 	}, []);
 
 	const signOut = async () => {
-		await supabase.auth.signOut();
-		navigate("/login");
+		try {
+			await supabase.auth.signOut();
+		} finally {
+			// Navigate even if the sign-out call fails so the user is not stuck
+			// in a protected area with a broken session.
+			navigate("/login");
+		}
 	};
 
 	return (

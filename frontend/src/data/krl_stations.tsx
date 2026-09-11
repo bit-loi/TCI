@@ -5,6 +5,16 @@ export type Station = {
 	name: string;
 	coord: [number, number];
 	lines: string[];
+	/** Street address of the station, when known. */
+	address?: string;
+	/** Overall investment score (0-100). Present only after the analysis pipeline fills it. */
+	score?: number;
+	/** 1-based rank among all stations by score. */
+	rank?: number;
+	/** Environment typology label, e.g. "Transit Oriented Development". */
+	typology?: string;
+	/** Recent growth rate, e.g. "+2%". */
+	growth?: string;
 };
 
 export const KRL_STATIONS: Station[] = [

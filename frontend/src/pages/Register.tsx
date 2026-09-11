@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import LogoNav from "@/assets/logo/logo-nav.png";
+import AuthLayout from "@/components/ui/AuthLayout";
 import { supabase } from "@/config/supabase";
 
 export default function Register() {
@@ -28,38 +29,35 @@ export default function Register() {
 
 		setLoading(true);
 
-		const { data, error: authError } = await supabase.auth.signUp({
-			email,
-			password,
-			options: {
-				data: { full_name: name },
-			},
-		});
+		try {
+			const { data, error: authError } = await supabase.auth.signUp({
+				email,
+				password,
+				options: {
+					data: { full_name: name },
+				},
+			});
 
-		if (authError) {
-			setError(authError.message);
+			if (authError) {
+				setError(authError.message);
+				return;
+			}
+
+			if (data.user && !data.session) {
+				navigate("/login?registered=true");
+			} else {
+				navigate("/dashboard");
+			}
+		} finally {
 			setLoading(false);
-			return;
 		}
-
-		if (data.user && !data.session) {
-			navigate("/login?registered=true");
-		} else {
-			navigate("/dashboard");
-		}
-
-		setLoading(false);
 	};
 
 	return (
-		<div className="relative flex min-h-screen items-center justify-center bg-[#f0f6ff] px-4 py-12">
-			{/* Decorative background blobs */}
-			<div className="pointer-events-none absolute -left-32 -top-32 h-96 w-96 rounded-full bg-[#60d2cd]/10 blur-3xl" />
-			<div className="pointer-events-none absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-[#3281d8]/10 blur-3xl" />
-
-			<div className="animate-fade-up relative z-10 w-full max-w-md">
+		<AuthLayout>
+			<div className="animate-fade-up relative z-10 w-full min-w-0 max-w-md [overflow-wrap:anywhere] motion-reduce:animate-none!">
 				{/* Card */}
-				<div className="rounded-3xl bg-white p-8 shadow-[0_20px_50px_#D3DEF5] sm:p-10">
+				<div className="rounded-3xl bg-white px-6 py-8 shadow-[0_20px_50px_#D3DEF5] sm:p-10">
 					{/* Back to Home */}
 					<Link
 						to="/"
@@ -82,7 +80,7 @@ export default function Register() {
 					</Link>
 
 					{/* Logo & Title */}
-					<div className="mb-8 flex flex-col items-center">
+					<div className="mb-8 flex flex-col items-center text-center">
 						<Link to="/" aria-label="TCI, return to home">
 							<img
 								src={LogoNav}
@@ -271,6 +269,6 @@ export default function Register() {
 					</p>
 				</div>
 			</div>
-		</div>
+		</AuthLayout>
 	);
 }

@@ -2,13 +2,16 @@
 
 import { useState } from "react";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 import LogoNav from "@/assets/logo/logo-nav.png";
+import AuthLayout from "@/components/ui/AuthLayout";
 import { supabase } from "@/config/supabase";
 
 export default function Login() {
 	const navigate = useNavigate();
+	const [searchParams] = useSearchParams();
+	const registered = searchParams.get("registered") === "true";
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
@@ -20,34 +23,32 @@ export default function Login() {
 		setLoading(true);
 		setError("");
 
-		const { error: authError } = await supabase.auth.signInWithPassword({
-			email,
-			password,
-		});
+		try {
+			const { error: authError } = await supabase.auth.signInWithPassword({
+				email,
+				password,
+			});
 
-		if (authError) {
-			setError(
-				authError.message === "Invalid login credentials"
-					? "Email atau password salah"
-					: authError.message,
-			);
+			if (authError) {
+				setError(
+					authError.message === "Invalid login credentials"
+						? "Email atau password salah"
+						: authError.message,
+				);
+				return;
+			}
+
+			navigate("/dashboard");
+		} finally {
 			setLoading(false);
-			return;
 		}
-
-		navigate("/dashboard");
-		setLoading(false);
 	};
 
 	return (
-		<div className="relative flex min-h-screen items-center justify-center bg-[#f0f6ff] px-4 py-12">
-			{/* Decorative background blobs */}
-			<div className="pointer-events-none absolute -left-32 -top-32 h-96 w-96 rounded-full bg-[#60d2cd]/10 blur-3xl" />
-			<div className="pointer-events-none absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-[#3281d8]/10 blur-3xl" />
-
-			<div className="animate-fade-up relative z-10 w-full max-w-md">
+		<AuthLayout>
+			<div className="animate-fade-up relative z-10 w-full min-w-0 max-w-md [overflow-wrap:anywhere] motion-reduce:animate-none!">
 				{/* Card */}
-				<div className="rounded-3xl bg-white p-8 shadow-[0_20px_50px_#D3DEF5] sm:p-10">
+				<div className="rounded-3xl bg-white px-6 py-8 shadow-[0_20px_50px_#D3DEF5] sm:p-10">
 					{/* Back to Home */}
 					<Link
 						to="/"
@@ -70,7 +71,7 @@ export default function Login() {
 					</Link>
 
 					{/* Logo & Title */}
-					<div className="mb-8 flex flex-col items-center">
+					<div className="mb-8 flex flex-col items-center text-center">
 						<Link to="/" aria-label="TCI, return to home">
 							<img
 								src={LogoNav}
@@ -85,6 +86,14 @@ export default function Login() {
 							Selamat datang kembali di TCI
 						</p>
 					</div>
+
+					{/* Registered notice */}
+					{registered && !error && (
+						<div className="mb-4 rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-600">
+							Pendaftaran berhasil! Silakan cek email Anda untuk verifikasi
+							sebelum masuk.
+						</div>
+					)}
 
 					{/* Error */}
 					{error && (
@@ -216,6 +225,6 @@ export default function Login() {
 					</p>
 				</div>
 			</div>
-		</div>
+		</AuthLayout>
 	);
 }

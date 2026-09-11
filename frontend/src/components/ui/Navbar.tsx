@@ -6,11 +6,15 @@ import { Link, NavLink } from "react-router-dom";
 
 import LogoNav from "@/assets/logo/logo-nav.png";
 
-const navItems = [
-	{ label: "Home", path: "/" },
-	{ label: "Home1", path: "/s1" },
-	{ label: "Home2", path: "/s2" },
-	{ label: "Home3", path: "/s3" },
+type NavItem = {
+	label: string;
+	path: string;
+};
+
+const navItems: NavItem[] = [
+	{ label: "Beranda", path: "/" },
+	{ label: "Peta", path: "/map" },
+	{ label: "Dashboard", path: "/dashboard" },
 ];
 
 const Navbar = () => {

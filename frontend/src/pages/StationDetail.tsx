@@ -60,14 +60,16 @@ export default function StationDetail() {
 					<div>
 						<h1 className="text-4xl font-bold text-gray-900 mb-2">
 							{station.name}
-						</h1>
-
-						<p className="text-gray-500">{station.address}</p>
+						</h1>						<p className="text-gray-500">
+							{station.address ?? "Alamat stasiun belum tersedia"}
+						</p>
 					</div>
 
-					<span className="text-blue-500 border border-blue-400 px-4 py-1.5 rounded-full font-medium">
-						Rank #{station.rank}
-					</span>
+					{station.rank !== undefined ? (
+						<span className="text-blue-500 border border-blue-400 px-4 py-1.5 rounded-full font-medium">
+							Rank #{station.rank}
+						</span>
+					) : null}
 				</div>
 
 				<div className="flex space-x-8 mb-8 text-2xl font-light">
@@ -91,19 +93,21 @@ export default function StationDetail() {
 						<>
 							<div className="space-y-6">
 								<div className="flex gap-4">
-									<div className="border border-blue-100 p-6 rounded-xl flex-1">
-										<p className="text-blue-300 text-sm mb-2">Typology</p>
+								<div className="border border-blue-100 p-6 rounded-xl flex-1">
+									<p className="text-blue-300 text-sm mb-2">Typology</p>
 
-										<p className="text-2xl text-blue-500">{station.typology}</p>
-									</div>
+									<p className="text-2xl text-blue-500">
+										{station.typology ?? "-"}
+									</p>
+								</div>
 
-									<div className="border border-blue-100 p-6 rounded-xl w-1/3">
-										<p className="text-blue-300 text-sm mb-2">Growth Rate</p>
+								<div className="border border-blue-100 p-6 rounded-xl w-1/3">
+									<p className="text-blue-300 text-sm mb-2">Growth Rate</p>
 
-										<p className="text-2xl text-blue-500">
-											📈 {station.growth}
-										</p>
-									</div>
+									<p className="text-2xl text-blue-500">
+										{station.growth ?? "-"}
+									</p>
+								</div>
 								</div>
 
 								<div className="bg-blue-50 border border-blue-200 p-6 rounded-xl relative">
@@ -114,11 +118,8 @@ export default function StationDetail() {
 									<p className="text-blue-300 text-sm mb-2">Insight AI</p>
 
 									<p className="text-blue-600 leading-relaxed">
-										Stasiun Cisauk mencatat peningkatan aktivitas transit
-										sebesar 12% dalam kuartal terakhir. Potensi investasi
-										properti untuk model sewa kost atau retail harian menempati
-										skor tinggi karena konektivitas langsung (skybridge) ke
-										kawasan residensial baru.
+										Insight AI untuk stasiun ini belum tersedia. Analisis akan
+										muncul di sini setelah data ekonomi kawasan diproses.
 									</p>
 								</div>
 							</div>
@@ -128,36 +129,43 @@ export default function StationDetail() {
 									<p className="text-blue-300 text-sm mb-2">Skor Stasiun:</p>
 
 									<p className="text-4xl text-blue-500 font-medium mb-6">
-										{station.score}
+										{station.score ?? "-"}
 									</p>
 
 									<p className="text-blue-400 text-sm mb-4">Breakdown Skor:</p>
 
-									<div className="space-y-3">
-										<div className="flex justify-between text-blue-500 border-b border-gray-100 pb-2">
-											<span>Aktivitas Penumpang</span>
+									{station.score === undefined ? (
+										<p className="text-blue-400 text-sm">
+											Breakdown skor belum tersedia. Data analisis untuk
+											stasiun ini masih dalam proses.
+										</p>
+									) : (
+										<div className="space-y-3">
+											<div className="flex justify-between text-blue-500 border-b border-gray-100 pb-2">
+												<span>Aktivitas Penumpang</span>
 
-											<span>88</span>
+												<span>88</span>
+											</div>
+
+											<div className="flex justify-between text-blue-500 border-b border-gray-100 pb-2">
+												<span>Kegiatan Ekonomi</span>
+
+												<span>78</span>
+											</div>
+
+											<div className="flex justify-between text-blue-500 border-b border-gray-100 pb-2">
+												<span>Aksesibilitas</span>
+
+												<span>90</span>
+											</div>
+
+											<div className="flex justify-between text-blue-500 pb-2">
+												<span>Ketersediaan Properti</span>
+
+												<span>75</span>
+											</div>
 										</div>
-
-										<div className="flex justify-between text-blue-500 border-b border-gray-100 pb-2">
-											<span>Kegiatan Ekonomi</span>
-
-											<span>78</span>
-										</div>
-
-										<div className="flex justify-between text-blue-500 border-b border-gray-100 pb-2">
-											<span>Aksesibilitas</span>
-
-											<span>90</span>
-										</div>
-
-										<div className="flex justify-between text-blue-500 pb-2">
-											<span>Ketersediaan Properti</span>
-
-											<span>75</span>
-										</div>
-									</div>
+									)}
 								</div>
 							</div>
 						</>
@@ -204,15 +212,14 @@ export default function StationDetail() {
 								<p className="text-blue-300 text-sm mb-4">AI Summary</p>
 
 								<p className="text-blue-600 leading-relaxed mb-4">
-									Stasiun Cisauk memiliki infrastruktur transit dan aktivitas
-									penumpang yang jauh lebih matang dibandingkan Stasiun Serpong,
-									dibuktikan dengan skor Aksesibilitas (90 berbanding 80).
+									Perbandingan antar stasiun akan tersedia setelah skor untuk
+									semua stasiun selesai dihitung.
 								</p>
 
 								<p className="text-blue-600 leading-relaxed">
-									Namun, Stasiun Serpong mencatatkan Tren Aktivitas yang lebih
-									agresif (+5%), menjadikannya kandidat kuat untuk investasi
-									lahan jangka menengah sebelum titik jenuh komersial tercapai.
+									Skor dan tren yang ditampilkan saat ini masih berupa
+									contoh dan belum merepresentasikan hasil analisis
+									stasiun ini.
 								</p>
 							</div>
 						</>
