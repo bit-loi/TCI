@@ -32,8 +32,8 @@ const FooterSection = () => {
 								visible ? "animate-fade-up delay-100" : "opacity-0"
 							}`}
 						>
-							Lorem ipsum dolor sit amet, <br className="hidden sm:block" />
-							tempor minim enim ad in ea.
+							Tetap ikuti perkembangan data, tren kawasan, dan insight terbaru untuk
+							menemukan peluang di sekitar stasiun.
 						</p>
 					</div>
 

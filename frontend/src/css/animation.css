@@ -123,3 +123,185 @@
 .animate-slide-in-text {
 	animation: slide-in-text 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
+
+/* Hotspot Finder card */
+.hotspot-grid {
+	background-image:
+		linear-gradient(rgba(255, 255, 255, 0.42) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(255, 255, 255, 0.42) 1px, transparent 1px);
+	background-size: 14.285% 14.285%;
+}
+
+@keyframes hotspot-pulse {
+	0%,
+	100% {
+		opacity: 0.45;
+		transform: scale(0.8);
+	}
+
+	50% {
+		opacity: 0.12;
+		transform: scale(1.45);
+	}
+}
+
+.hotspot-pulse {
+	animation: hotspot-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes metric-badge-breathe {
+	0%,
+	100% {
+		transform: translateY(0) scale(1);
+	}
+
+	50% {
+		transform: translateY(-3px) scale(1.015);
+	}
+}
+
+.metric-badge {
+	animation: metric-badge-breathe 3.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.hotspot-pulse,
+	.metric-badge,
+	.trend-bar,
+	.trend-line,
+	.trend-point,
+	.trend-final-pulse {
+		animation: none;
+		opacity: 1;
+	}
+}
+
+/* AI Insight card */
+@keyframes ai-location-pulse {
+	0%,
+	100% {
+		opacity: 0.45;
+		transform: scale(0.8);
+	}
+
+	50% {
+		opacity: 0.1;
+		transform: scale(1.55);
+	}
+}
+
+.ai-location-pulse {
+	animation: ai-location-pulse 2.4s ease-in-out infinite;
+}
+
+.ai-insight-panel {
+	transform-origin: center;
+	transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .ai-insight-panel {
+	transform: rotate(3deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ai-location-pulse {
+		animation: none;
+	}
+
+	.ai-insight-panel {
+		transition: none;
+	}
+
+	.group:hover .ai-insight-panel {
+		transform: none;
+	}
+}
+
+/* Trend Dashboard card */
+@keyframes trend-bar-grow {
+	from {
+		opacity: 0;
+		transform: scaleY(0);
+	}
+
+	to {
+		opacity: 1;
+		transform: scaleY(1);
+	}
+}
+
+.trend-bar {
+	transform-box: fill-box;
+	transform-origin: center bottom;
+	animation: trend-bar-grow 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes trend-line-draw {
+	from {
+		stroke-dashoffset: 320;
+	}
+
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+
+.trend-line {
+	stroke-dasharray: 320;
+	stroke-dashoffset: 320;
+	animation: trend-line-draw 1.35s 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes trend-point-pop {
+	from {
+		opacity: 0;
+		transform: scale(0);
+	}
+
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+.trend-point {
+	transform-box: fill-box;
+	transform-origin: center;
+	animation: trend-point-pop 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes trend-final-pulse {
+	0%,
+	100% {
+		opacity: 0.14;
+		transform: scale(0.8);
+	}
+
+	50% {
+		opacity: 0.04;
+		transform: scale(1.45);
+	}
+}
+
+.trend-final-pulse {
+	transform-box: fill-box;
+	transform-origin: center;
+	animation: trend-final-pulse 2.2s 1.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.metric-badge,
+	.trend-bar,
+	.trend-point,
+	.trend-final-pulse {
+		animation: none;
+		opacity: 1;
+		transform: none;
+	}
+
+	.trend-line {
+		animation: none;
+		opacity: 1;
+		stroke-dashoffset: 0;
+	}
+}

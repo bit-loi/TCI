@@ -1,8 +1,13 @@
 /** @format */
 
 import { useMemo } from "react";
+import { Link } from "react-router-dom";
 
 import { useInView } from "@/hooks/useInView";
+
+import AIInsightCard from "./AIInsightCard";
+import HotspotFinderCard from "./HotspotFinderCard";
+import TrendDashboardCard from "./TrendDashboardCard";
 
 const CompareSection = () => {
 	const options = useMemo(
@@ -41,37 +46,27 @@ const CompareSection = () => {
 						visible ? "animate-slide-in-text delay-200" : "opacity-0"
 					}`}
 				>
-					Lorem ipsum dolor sit amet, tempor minim enim ad in ea. Aute quis anim
-					est aliquip ut do do ad incididunt in minim.
+					Ubah data aktivitas di sekitar stasiun menjadi insight yang lebih
+					bermakna untuk menemukan lokasi dengan potensi ekonomi dan pengembangan
+					terbaik.
 				</p>
 
-				<button
+				<Link
+					to="/map/ekonomi-kawasan"
 					className={`button-animation mt-7 rounded-md bg-gradient px-7 py-3 text-sm font-medium text-white shadow-[0_4px_14px_0_rgba(59,135,214,0.39)] sm:mt-8 sm:px-8 sm:py-3.5 sm:text-base ${
 						visible ? "animate-fade-up delay-200" : "opacity-0"
 					}`}
 				>
 					Jelajahi Peta
-				</button>
+				</Link>
 			</div>
 
 			<div className="grid w-full grid-cols-2 gap-3 sm:gap-4 md:w-1/2 md:gap-6">
-				<div
-					className={`aspect-square w-full rounded bg-[#dadada] ${
-						visible ? "animate-card-reveal delay-100" : "opacity-0"
-					}`}
-				/>
+				<HotspotFinderCard visible={visible} />
 
-				<div
-					className={`aspect-square w-full rounded bg-[#dadada] ${
-						visible ? "animate-card-reveal delay-200" : "opacity-0"
-					}`}
-				/>
+				<TrendDashboardCard visible={visible} />
 
-				<div
-					className={`col-span-2 aspect-[2.1/1] w-full rounded bg-[#dadada] ${
-						visible ? "animate-card-reveal delay-200" : "opacity-0"
-					}`}
-				/>
+				<AIInsightCard visible={visible} />
 			</div>
 		</section>
 	);

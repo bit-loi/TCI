@@ -6,18 +6,27 @@ import CountUp from "../ui/CountUp";
 
 type StationCardProps = {
 	visible: boolean;
+	embedded?: boolean;
 };
 
-const StationCard = ({ visible }: StationCardProps) => {
+const StationCard = ({ visible, embedded = false }: StationCardProps) => {
 	return (
-		<div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
+		<div
+			className={
+				embedded
+					? "relative"
+					: "absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2"
+			}
+		>
 			<div
-				className={`relative w-85 rounded-xl border border-slate-300 bg-white p-8 shadow-lg ${
-					visible ? "" : ""
+				className={`relative w-[min(19rem,calc(100vw-3rem))] rounded-xl border border-slate-300 bg-white p-4 shadow-lg sm:w-85 sm:p-5 ${
+					visible ? "animate-card-reveal" : "opacity-0"
 				}`}
 			>
 				{/* Arrow */}
-				<div className="absolute -bottom-7.5 left-1/2 h-15 w-15 rounded-br-2xl -translate-x-1/2 rotate-45 border-r border-b border-slate-300 bg-white" />
+				{!embedded && (
+					<div className="absolute -bottom-7.5 left-1/2 h-15 w-15 rounded-br-2xl -translate-x-1/2 rotate-45 border-r border-b border-slate-300 bg-white" />
+				)}
 
 				<div className="relative z-10 bg-white">
 					<div className="flex items-center justify-between">
@@ -28,7 +37,7 @@ const StationCard = ({ visible }: StationCardProps) => {
 						</span>
 					</div>
 
-					<p className="mt-2 text-xs font-medium leading-[1.35] text-black">
+					<p className="mt-2 text-xs font-medium leading-[1.4] text-black">
 						Jl. Raya Cisauk Lapan, Sampora, Kec.
 						<br />
 						Cisauk, Kabupaten Tangerang, Banten
@@ -37,12 +46,12 @@ const StationCard = ({ visible }: StationCardProps) => {
 					<img
 						src={Cisauk}
 						alt="Stasiun Cisauk"
-						className="mt-4 h-40 w-full rounded-sm bg-[#d9d9d9] object-cover object-center"
+						className="mt-3.5 h-36 w-full rounded-md bg-[#d9d9d9] object-cover object-center sm:h-40"
 					/>
 
-					<div className="mt-5 flex items-center">
+					<div className="mt-4 flex items-center gap-2 sm:mt-5">
 						<div className="flex-1 text-center">
-							<p className="text-xl font-semibold text-[#3281d8]">
+							<p className="text-2xl font-semibold leading-none text-[#3281d8] sm:text-3xl">
 								<CountUp end={85} start={visible} />
 							</p>
 							<p className="text-[10px] text-[#666666]">Skor Stasiun</p>
@@ -51,7 +60,7 @@ const StationCard = ({ visible }: StationCardProps) => {
 						<div className="h-9 w-px bg-[#cccccc]" />
 
 						<div className="flex-1 text-center">
-							<p className="text-xl font-semibold text-[#3281d8]">
+							<p className="text-2xl font-semibold leading-none text-[#3281d8] sm:text-3xl">
 								<CountUp end={2} suffix="%" start={visible} />
 							</p>
 							<p className="text-[10px] text-[#666666]">Growth Rate</p>
@@ -59,7 +68,7 @@ const StationCard = ({ visible }: StationCardProps) => {
 
 						<button
 							type="button"
-							className="ml-3 rounded-md bg-[#3281d8] px-3 py-1.5 text-[10px] font-medium text-white shadow-sm transition hover:bg-[#256bb7]"
+							className="ml-1 rounded-md bg-[#3281d8] px-3 py-2 text-[10px] font-medium whitespace-nowrap text-white shadow-sm transition hover:bg-[#256bb7]"
 						>
 							Cek Detail
 						</button>
