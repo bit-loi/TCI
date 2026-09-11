@@ -1,0 +1,25 @@
+# Python runtime files
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Local raw inputs and secrets
+shared/raw/*
+!shared/raw/.gitkeep
+*.env
+
+# Generated model artifacts and training outputs
+*/models/*
+!*/models/.gitkeep
+*/outputs/*
+!*/outputs/.gitkeep
+*.pkl
+*.joblib
+*.onnx
+
+# Local experiment files
+*.log
+mlruns/
+runs/

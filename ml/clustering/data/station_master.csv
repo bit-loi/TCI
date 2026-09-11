@@ -1,0 +1,78 @@
+station_code,station_id,station_name,line,station_type,city_regency,latitude,longitude,connected_lines,is_transit_hub,distance_to_monas_km,annual_passengers_2025,daily_passengers_2025,yoy_growth_2025_pct,source_status
+STA-001,jakartakota,Jakarta Kota,Bogor,Hub Transit Utama,Jakarta Barat,-6.1352,106.8133,2,1,4.7,15538310,42571,6.36,synthetic_training_only
+STA-002,jayakarta,Jayakarta,Bogor,Kecil,Jakarta Pusat,-6.1385,106.828,1,0,4.1,1793157,4913,5.1,synthetic_training_only
+STA-003,manggabesar,Mangga Besar,Bogor,Kecil,Jakarta Pusat,-6.1467,106.8258,1,0,3.2,1812880,4967,5.05,synthetic_training_only
+STA-004,sawahbesar,Sawah Besar,Bogor,Kecil,Jakarta Pusat,-6.1552,106.8248,1,0,2.3,1834958,5027,8.07,synthetic_training_only
+STA-005,juanda,Juanda,Bogor,Sedang,Jakarta Pusat,-6.1663,106.8309,1,0,1.1,3820850,10468,7.05,synthetic_training_only
+STA-006,gondangdia,Gondangdia,Bogor,Sedang,Jakarta Pusat,-6.1848,106.8317,1,0,1.2,3775854,10345,4.0,synthetic_training_only
+STA-007,cikini,Cikini,Bogor,Sedang,Jakarta Pusat,-6.1934,106.8365,1,0,2.3,3910088,10713,6.72,synthetic_training_only
+STA-008,manggarai,Manggarai,Bogor,Hub Transit Utama,Jakarta Selatan,-6.2107,106.85,3,1,4.7,15240861,41756,4.33,synthetic_training_only
+STA-009,tebet,Tebet,Bogor,Besar,Jakarta Selatan,-6.2255,106.8508,1,0,6.2,7682981,21049,4.62,synthetic_training_only
+STA-010,cawang,Cawang,Bogor,Besar,Jakarta Timur,-6.2432,106.8622,1,0,8.5,7724418,21163,7.19,synthetic_training_only
+STA-011,durenkalibata,Duren Kalibata,Bogor,Sedang,Jakarta Selatan,-6.2569,106.85,1,0,9.4,3819327,10464,4.26,synthetic_training_only
+STA-012,pasarminggu,Pasar Minggu,Bogor,Besar,Jakarta Selatan,-6.2839,106.842,1,0,12.2,7717202,21143,5.51,synthetic_training_only
+STA-013,pasarminggubaru,Pasar Minggu Baru,Bogor,Sedang,Jakarta Selatan,-6.29,106.841,1,0,12.8,3802923,10419,5.07,synthetic_training_only
+STA-014,tanjungbarat,Tanjung Barat,Bogor,Sedang,Jakarta Selatan,-6.3036,106.8477,1,0,14.4,3851355,10552,7.27,synthetic_training_only
+STA-015,lentengagung,Lenteng Agung,Bogor,Sedang,Jakarta Selatan,-6.3222,106.8443,1,0,16.4,3808531,10434,4.85,synthetic_training_only
+STA-016,univpancasila,Universitas Pancasila,Bogor,Kecil,Jakarta Selatan,-6.3345,106.8378,1,0,17.7,1823100,4995,6.53,synthetic_training_only
+STA-017,univindonesia,Universitas Indonesia,Bogor,Sedang,Depok,-6.3608,106.8309,1,0,20.6,3867978,10597,7.21,synthetic_training_only
+STA-018,pondokcina,Pondok Cina,Bogor,Sedang,Depok,-6.3691,106.831,1,0,21.5,3870320,10604,6.55,synthetic_training_only
+STA-019,depokbaru,Depok Baru,Bogor,Besar,Depok,-6.3953,106.8177,1,0,24.5,7695022,21082,7.39,synthetic_training_only
+STA-020,depok,Depok,Bogor,Besar,Depok,-6.4004,106.8188,1,0,25,7712166,21129,8.08,synthetic_training_only
+STA-021,citayam,Citayam,Bogor,Hub Transit Utama,Depok/Bogor,-6.4407,106.8482,2,1,29.6,15766564,43196,10.0,synthetic_training_only
+STA-022,bojonggede,Bojonggede,Bogor,Besar,Bogor,-6.4696,106.8149,1,0,32.7,7624502,20889,5.53,synthetic_training_only
+STA-023,cilebut,Cilebut,Bogor,Sedang,Bogor,-6.5232,106.8127,1,0,38.7,3861411,10579,5.06,synthetic_training_only
+STA-024,bogor,Bogor,Bogor,Hub Transit Utama,Kota Bogor,-6.5944,106.7891,1,1,46.8,15565678,42646,8.55,synthetic_training_only
+STA-025,cibinong,Cibinong,Nambo,Sedang,Bogor,-6.4825,106.8546,1,0,34.3,2465157,6754,3.39,synthetic_training_only
+STA-026,nambo,Nambo,Nambo,Kecil,Bogor,-6.5153,106.8631,1,0,38,1171461,3209,5.97,synthetic_training_only
+STA-027,pondokrajeg,Pondok Rajeg,Nambo,Kecil,Bogor,-6.4735,106.8618,1,0,33.4,1170585,3207,7.12,synthetic_training_only
+STA-028,kampungbandan,Kampung Bandan,Cikarang,Hub Transit Utama,Jakarta Utara,-6.1325,106.8156,2,1,4.9,8666488,23744,5.72,synthetic_training_only
+STA-029,angke,Angke,Cikarang,Sedang,Jakarta Barat,-6.1443,106.7994,1,0,4.6,2161870,5923,4.82,synthetic_training_only
+STA-030,duri,Duri,Cikarang,Hub Transit Utama,Jakarta Barat,-6.162,106.8054,2,1,2.8,8566541,23470,5.91,synthetic_training_only
+STA-031,tanahabang,Tanah Abang,Cikarang,Hub Transit Utama,Jakarta Pusat,-6.1868,106.8125,2,1,2.1,8894870,24370,9.53,synthetic_training_only
+STA-032,karet,Karet,Cikarang,Sedang,Jakarta Pusat,-6.2011,106.8177,1,0,3,2156803,5909,5.89,synthetic_training_only
+STA-033,sudirmanbaru,BNI City,Cikarang,Besar,Jakarta Pusat,-6.2039,106.8218,1,0,3.2,4322771,11843,4.73,synthetic_training_only
+STA-034,sudirman,Sudirman,Cikarang,Besar,Jakarta Pusat,-6.2074,106.8225,1,0,3.6,4289181,11751,6.38,synthetic_training_only
+STA-035,matraman,Matraman,Cikarang,Sedang,Jakarta Timur,-6.2118,106.8628,1,0,5.6,2135890,5852,4.99,synthetic_training_only
+STA-036,jatinegara,Jatinegara,Cikarang,Hub Transit Utama,Jakarta Timur,-6.2149,106.8703,2,1,6.5,8651034,23701,6.15,synthetic_training_only
+STA-037,klender,Klender,Cikarang,Besar,Jakarta Timur,-6.2126,106.8912,1,0,8.2,4249065,11641,4.32,synthetic_training_only
+STA-038,buaran,Buaran,Cikarang,Sedang,Jakarta Timur,-6.2088,106.9101,1,0,9.9,2135792,5851,4.4,synthetic_training_only
+STA-039,klenderbaru,Klender Baru,Cikarang,Kecil,Jakarta Timur,-6.2159,106.8988,1,0,9.1,984134,2696,6.71,synthetic_training_only
+STA-040,cakung,Cakung,Cikarang,Sedang,Jakarta Timur,-6.1848,106.9445,1,0,13,2163806,5928,6.97,synthetic_training_only
+STA-041,kranji,Kranji,Cikarang,Besar,Bekasi,-6.2333,106.9765,1,0,17.7,4338270,11886,6.66,synthetic_training_only
+STA-042,bekasi,Bekasi,Cikarang,Hub Transit Utama,Kota Bekasi,-6.238,106.9896,1,1,19.3,8712566,23870,5.44,synthetic_training_only
+STA-043,bekasitimur,Bekasi Timur,Cikarang,Sedang,Kota Bekasi,-6.2321,107.0087,1,0,21,2164612,5930,5.95,synthetic_training_only
+STA-044,tambun,Tambun,Cikarang,Sedang,Kab. Bekasi,-6.2389,107.0397,1,0,24.5,2185229,5987,5.85,synthetic_training_only
+STA-045,cibitung,Cibitung,Cikarang,Besar,Kab. Bekasi,-6.2411,107.1043,1,0,31.5,4303425,11790,5.57,synthetic_training_only
+STA-046,telagamurni,Metland Telaga Murni,Cikarang,Kecil,Kab. Bekasi,-6.2647,107.1391,1,0,35.9,1018324,2790,5.91,synthetic_training_only
+STA-047,cikarang,Cikarang,Cikarang,Besar,Kab. Bekasi,-6.2624,107.1526,1,0,37.2,4298244,11776,4.3,synthetic_training_only
+STA-048,grogol,Grogol,Tangerang,Sedang,Jakarta Barat,-6.1633,106.7899,1,0,4.3,1950768,5345,7.22,synthetic_training_only
+STA-049,pesing,Pesing,Tangerang,Kecil,Jakarta Barat,-6.1583,106.7767,1,0,5.9,904385,2478,4.22,synthetic_training_only
+STA-050,tamankota,Taman Kota,Tangerang,Sedang,Jakarta Barat,-6.1583,106.7629,1,0,7.4,1961212,5373,7.8,synthetic_training_only
+STA-051,bojongindah,Bojong Indah,Tangerang,Kecil,Jakarta Barat,-6.1583,106.7476,1,0,9,905927,2482,3.94,synthetic_training_only
+STA-052,rawabuaya,Rawa Buaya,Tangerang,Sedang,Jakarta Barat,-6.1583,106.7328,1,0,10.6,1948823,5339,6.2,synthetic_training_only
+STA-053,kalideres,Kalideres,Tangerang,Besar,Jakarta Barat,-6.1541,106.7027,1,0,14,3862383,10582,4.47,synthetic_training_only
+STA-054,poris,Poris,Tangerang,Sedang,Kota Tangerang,-6.1553,106.6863,1,0,15.7,1908686,5229,3.97,synthetic_training_only
+STA-055,batuceper,Batu Ceper,Tangerang,Sedang,Kota Tangerang,-6.1601,106.6605,1,0,18.5,1920352,5261,3.83,synthetic_training_only
+STA-056,tanahtinggi,Tanah Tinggi,Tangerang,Kecil,Kota Tangerang,-6.1662,106.6432,1,0,20.4,910851,2495,5.99,synthetic_training_only
+STA-057,tangerang,Tangerang,Tangerang,Hub Transit Utama,Kota Tangerang,-6.1783,106.6319,1,1,21.6,7707082,21115,4.81,synthetic_training_only
+STA-058,palmerah,Palmerah,Rangkasbitung,Sedang,Jakarta Barat,-6.2003,106.7943,1,0,4.6,3750004,10274,10.12,synthetic_training_only
+STA-059,kebayoran,Kebayoran,Rangkasbitung,Besar,Jakarta Selatan,-6.2439,106.7823,1,0,9.1,7642822,20939,10.35,synthetic_training_only
+STA-060,pondokranji,Pondok Ranji,Rangkasbitung,Sedang,Tangerang Selatan,-6.2882,106.7345,1,0,16.2,3722588,10199,8.43,synthetic_training_only
+STA-061,jurangmangu,Jurangmangu,Rangkasbitung,Sedang,Tangerang Selatan,-6.2694,106.7241,1,0,15.5,3853337,10557,8.44,synthetic_training_only
+STA-062,sudimara,Sudimara,Rangkasbitung,Sedang,Tangerang Selatan,-6.283,106.7139,1,0,17.3,3739957,10246,8.41,synthetic_training_only
+STA-063,rawabuntu,Rawa Buntu,Rangkasbitung,Besar,Tangerang Selatan,-6.3153,106.6817,1,0,22.4,7612098,20855,10.52,synthetic_training_only
+STA-064,serpong,Serpong,Rangkasbitung,Besar,Tangerang Selatan,-6.3208,106.6707,1,0,23.7,7438122,20378,7.99,synthetic_training_only
+STA-065,cisauk,Cisauk,Rangkasbitung,Sedang,Tangerang,-6.3167,106.6265,1,0,27.2,3836849,10512,13.04,synthetic_training_only
+STA-066,cicayur,Cicayur,Rangkasbitung,Kecil,Tangerang,-6.3216,106.5946,1,0,30.4,1768274,4845,9.75,synthetic_training_only
+STA-067,parungpanjang,Parung Panjang,Rangkasbitung,Besar,Bogor,-6.3789,106.4999,1,0,42.7,7445673,20399,10.25,synthetic_training_only
+STA-068,cilejit,Cilejit,Rangkasbitung,Kecil,Tangerang,-6.3585,106.4478,1,0,46.6,1757514,4815,11.99,synthetic_training_only
+STA-069,daru,Daru,Rangkasbitung,Kecil,Tangerang,-6.3389,106.4128,1,0,49.3,1797790,4925,10.83,synthetic_training_only
+STA-070,tenjo,Tenjo,Rangkasbitung,Sedang,Bogor,-6.3474,106.3888,1,0,52.1,3821785,10471,10.66,synthetic_training_only
+STA-071,tigaraksa,Tigaraksa,Rangkasbitung,Sedang,Tangerang,-6.301,106.3494,1,0,54.6,3749003,10271,9.2,synthetic_training_only
+STA-072,cikoya,Cikoya,Rangkasbitung,Kecil,Tangerang,-6.2947,106.3168,1,0,58,1759766,4821,9.27,synthetic_training_only
+STA-073,maja,Maja,Rangkasbitung,Sedang,Lebak,-6.2757,106.2789,1,0,61.6,3734556,10232,9.01,synthetic_training_only
+STA-074,citeras,Citeras,Rangkasbitung,Kecil,Lebak,-6.2793,106.2299,1,0,67,1758509,4818,7.78,synthetic_training_only
+STA-075,rangkasbitung,Rangkasbitung,Rangkasbitung,Besar,Lebak,-6.3502,106.1602,1,0,76.2,7637192,20924,10.25,synthetic_training_only
+STA-076,ancol,Ancol,Tanjung Priok,Kecil,Jakarta Utara,-6.1236,106.8321,1,0,5.8,2001955,5485,1.97,synthetic_training_only
+STA-077,tanjungpriok,Tanjung Priok,Tanjung Priok,Sedang,Jakarta Utara,-6.1147,106.8807,1,0,9,4273241,11708,3.95,synthetic_training_only
