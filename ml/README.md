@@ -19,7 +19,7 @@ Perintah tersebut membangun dua artefak yang dikonsumsi backend:
 
 Jangan sajikan CSV dari folder model langsung ke frontend. Backend harus membaca dua artefak di atas saat startup atau menyimpannya dalam cache read-only, lalu mengembalikan JSON melalui endpoint.
 
-Folder output per-model di-ignore, tetapi `ml/outputs/` adalah artifact handoff root dan perlu ditambahkan secara eksplisit untuk demo atau disertakan dalam deployment artifact/penyimpanan bersama. Jalankan ulang builder setiap kali output model berubah. Karena `scripts/` juga di-ignore, jalankan builder di environment yang memiliki script lokal tersebut sebelum membuat artifact handoff.
+Folder output per-model di-ignore, tetapi `ml/outputs/` adalah artifact handoff root dan perlu ditambahkan secara eksplisit untuk demo atau disertakan dalam deployment artifact/penyimpanan bersama. Jalankan ulang builder setiap kali output model berubah. Script builder di `ml/scripts/` disertakan dalam repositori dan dapat dijalankan langsung dari root proyek.
 
 ## Endpoint Contract
 
