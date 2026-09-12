@@ -6,7 +6,7 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 import LogoNav from "@/assets/logo/logo-nav.png";
 import AuthLayout from "@/components/ui/AuthLayout";
-import { supabase } from "@/config/supabase";
+import { apiFetch, setTokens } from "@/config/api";
 
 export default function Login() {
 	const navigate = useNavigate();
@@ -24,21 +24,22 @@ export default function Login() {
 		setError("");
 
 		try {
-			const { error: authError } = await supabase.auth.signInWithPassword({
-				email,
-				password,
+			const res = await apiFetch("/api/auth/signin", {
+				method: "POST",
+				body: JSON.stringify({ email, password }),
 			});
 
-			if (authError) {
-				setError(
-					authError.message === "Invalid login credentials"
-						? "Email atau password salah"
-						: authError.message,
-				);
+			const data = await res.json();
+
+			if (!res.ok) {
+				setError(data.error || "Gagal masuk");
 				return;
 			}
 
+			setTokens(data.session.access_token, data.session.refresh_token);
 			navigate("/dashboard");
+		} catch {
+			setError("Gagal terhubung ke server");
 		} finally {
 			setLoading(false);
 		}

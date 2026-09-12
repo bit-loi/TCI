@@ -5,16 +5,17 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 
-vi.mock("@/config/supabase", () => ({
-	supabase: {
-		auth: {
-			signUp: vi.fn(),
-		},
-	},
+const mockApiFetch = vi.fn();
+const mockSetTokens = vi.fn();
+
+vi.mock("@/config/api", () => ({
+	apiFetch: (...args: unknown[]) => mockApiFetch(...args),
+	setTokens: (...args: unknown[]) => mockSetTokens(...args),
+	clearTokens: vi.fn(),
+	getRefreshToken: vi.fn(),
 }));
 
 import Register from "@/pages/Register";
-import { supabase } from "@/config/supabase";
 
 function renderRegister() {
 	return render(
@@ -93,14 +94,19 @@ describe("Register Page", () => {
 			expect(screen.getByText("Password tidak cocok!")).toBeInTheDocument();
 		});
 
-		expect(supabase.auth.signUp).not.toHaveBeenCalled();
+		expect(mockApiFetch).not.toHaveBeenCalled();
 	});
 
-	it("calls signUp on submit with matching passwords", async () => {
+	it("calls apiFetch on submit with matching passwords", async () => {
 		const user = userEvent.setup();
-		(supabase.auth.signUp as ReturnType<typeof vi.fn>).mockResolvedValue({
-			data: { user: { id: "1" }, session: null },
-			error: null,
+		mockApiFetch.mockResolvedValue({
+			ok: true,
+			json: () =>
+				Promise.resolve({
+					user: { id: "1", email: "john@example.com" },
+					session: null,
+					requiresVerification: true,
+				}),
 		});
 		renderRegister();
 
@@ -110,20 +116,21 @@ describe("Register Page", () => {
 		await user.type(screen.getByLabelText("Konfirmasi Password"), "password123");
 		await user.click(screen.getByRole("button", { name: /daftar$/i }));
 
-		expect(supabase.auth.signUp).toHaveBeenCalledWith({
-			email: "john@example.com",
-			password: "password123",
-			options: {
-				data: { full_name: "John Doe" },
-			},
+		expect(mockApiFetch).toHaveBeenCalledWith("/api/auth/signup", {
+			method: "POST",
+			body: JSON.stringify({
+				email: "john@example.com",
+				password: "password123",
+				fullName: "John Doe",
+			}),
 		});
 	});
 
 	it("shows error on signUp failure", async () => {
 		const user = userEvent.setup();
-		(supabase.auth.signUp as ReturnType<typeof vi.fn>).mockResolvedValue({
-			data: { user: null, session: null },
-			error: { message: "User already registered" },
+		mockApiFetch.mockResolvedValue({
+			ok: false,
+			json: () => Promise.resolve({ error: "User already registered" }),
 		});
 		renderRegister();
 
@@ -166,10 +173,10 @@ describe("Register Page", () => {
 
 	it("disables submit button while loading", async () => {
 		const user = userEvent.setup();
-		let resolveSignUp!: (value: unknown) => void;
-		(supabase.auth.signUp as ReturnType<typeof vi.fn>).mockReturnValue(
+		let resolveFetch!: (value: unknown) => void;
+		mockApiFetch.mockReturnValue(
 			new Promise((resolve) => {
-				resolveSignUp = resolve;
+				resolveFetch = resolve;
 			}),
 		);
 		renderRegister();
@@ -186,6 +193,9 @@ describe("Register Page", () => {
 			).toBeDisabled();
 		});
 
-		resolveSignUp({ data: { user: null, session: null }, error: null });
+		resolveFetch({
+			ok: true,
+			json: () => Promise.resolve({ session: null, requiresVerification: true }),
+		});
 	});
 });

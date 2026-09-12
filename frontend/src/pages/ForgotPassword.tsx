@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import LogoNav from "@/assets/logo/logo-nav.png";
 import AuthLayout from "@/components/ui/AuthLayout";
-import { supabase } from "@/config/supabase";
+import { apiFetch } from "@/config/api";
 
 export default function ForgotPassword() {
 	const [email, setEmail] = useState("");
@@ -20,19 +20,24 @@ export default function ForgotPassword() {
 		setError("");
 
 		try {
-			const { error: authError } = await supabase.auth.resetPasswordForEmail(
-				email,
-				{
+			const res = await apiFetch("/api/auth/reset-password", {
+				method: "POST",
+				body: JSON.stringify({
+					email,
 					redirectTo: `${window.location.origin}/login`,
-				},
-			);
+				}),
+			});
 
-			if (authError) {
-				setError(authError.message);
+			const data = await res.json();
+
+			if (!res.ok) {
+				setError(data.error || "Gagal mengirim link reset");
 				return;
 			}
 
 			setSent(true);
+		} catch {
+			setError("Gagal terhubung ke server");
 		} finally {
 			setLoading(false);
 		}

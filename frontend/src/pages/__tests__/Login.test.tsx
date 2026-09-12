@@ -5,16 +5,17 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 
-vi.mock("@/config/supabase", () => ({
-	supabase: {
-		auth: {
-			signInWithPassword: vi.fn(),
-		},
-	},
+const mockApiFetch = vi.fn();
+const mockSetTokens = vi.fn();
+
+vi.mock("@/config/api", () => ({
+	apiFetch: (...args: unknown[]) => mockApiFetch(...args),
+	setTokens: (...args: unknown[]) => mockSetTokens(...args),
+	clearTokens: vi.fn(),
+	getRefreshToken: vi.fn(),
 }));
 
 import Login from "@/pages/Login";
-import { supabase } from "@/config/supabase";
 
 function renderLogin() {
 	return render(
@@ -97,27 +98,33 @@ describe("Login Page", () => {
 		expect(passwordInput).toHaveAttribute("type", "password");
 	});
 
-	it("calls signInWithPassword on submit", async () => {
+	it("calls apiFetch on submit", async () => {
 		const user = userEvent.setup();
-		(supabase.auth.signInWithPassword as ReturnType<typeof vi.fn>).mockResolvedValue(
-			{ error: null },
-		);
+		mockApiFetch.mockResolvedValue({
+			ok: true,
+			json: () =>
+				Promise.resolve({
+					user: { id: "1", email: "test@example.com" },
+					session: { access_token: "at", refresh_token: "rt", expires_in: 3600, expires_at: 999 },
+				}),
+		});
 		renderLogin();
 
 		await user.type(screen.getByLabelText("Email"), "test@example.com");
 		await user.type(screen.getByLabelText("Password", { exact: true }), "password123");
 		await user.click(screen.getByRole("button", { name: /masuk$/i }));
 
-		expect(supabase.auth.signInWithPassword).toHaveBeenCalledWith({
-			email: "test@example.com",
-			password: "password123",
+		expect(mockApiFetch).toHaveBeenCalledWith("/api/auth/signin", {
+			method: "POST",
+			body: JSON.stringify({ email: "test@example.com", password: "password123" }),
 		});
 	});
 
 	it("shows error message on login failure", async () => {
 		const user = userEvent.setup();
-		(supabase.auth.signInWithPassword as ReturnType<typeof vi.fn>).mockResolvedValue({
-			error: { message: "Invalid login credentials" },
+		mockApiFetch.mockResolvedValue({
+			ok: false,
+			json: () => Promise.resolve({ error: "Email atau password salah" }),
 		});
 		renderLogin();
 
@@ -130,11 +137,9 @@ describe("Login Page", () => {
 		});
 	});
 
-	it("shows generic error for non-credential errors", async () => {
+	it("shows generic error for network errors", async () => {
 		const user = userEvent.setup();
-		(supabase.auth.signInWithPassword as ReturnType<typeof vi.fn>).mockResolvedValue({
-			error: { message: "Network error" },
-		});
+		mockApiFetch.mockRejectedValue(new Error("Network error"));
 		renderLogin();
 
 		await user.type(screen.getByLabelText("Email"), "test@example.com");
@@ -142,16 +147,16 @@ describe("Login Page", () => {
 		await user.click(screen.getByRole("button", { name: /masuk$/i }));
 
 		await waitFor(() => {
-			expect(screen.getByText("Network error")).toBeInTheDocument();
+			expect(screen.getByText("Gagal terhubung ke server")).toBeInTheDocument();
 		});
 	});
 
 	it("disables submit button while loading", async () => {
 		const user = userEvent.setup();
-		let resolveSignIn!: (value: unknown) => void;
-		(supabase.auth.signInWithPassword as ReturnType<typeof vi.fn>).mockReturnValue(
+		let resolveFetch!: (value: unknown) => void;
+		mockApiFetch.mockReturnValue(
 			new Promise((resolve) => {
-				resolveSignIn = resolve;
+				resolveFetch = resolve;
 			}),
 		);
 		renderLogin();
@@ -164,6 +169,9 @@ describe("Login Page", () => {
 			expect(screen.getByRole("button", { name: /masuk\.\.\./i })).toBeDisabled();
 		});
 
-		resolveSignIn({ error: null });
+		resolveFetch({
+			ok: true,
+			json: () => Promise.resolve({ session: { access_token: "at", refresh_token: "rt" } }),
+		});
 	});
 });

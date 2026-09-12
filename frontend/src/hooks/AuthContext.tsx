@@ -2,11 +2,14 @@
 
 import { createContext } from "react";
 
-import type { Session, User } from "@supabase/supabase-js";
+export interface AuthUser {
+	id: string;
+	email: string;
+}
 
 export interface AuthContextType {
-	session: Session | null;
-	user: User | null;
+	session: { user: AuthUser; access_token: string } | null;
+	user: AuthUser | null;
 	loading: boolean;
 	signOut: () => Promise<void>;
 }

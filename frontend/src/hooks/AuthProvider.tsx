@@ -2,53 +2,56 @@
 
 import { useEffect, useState } from "react";
 
-import type { Session } from "@supabase/supabase-js";
 import { useNavigate } from "react-router-dom";
 
-import { supabase } from "@/config/supabase";
+import { apiFetch, clearTokens, getRefreshToken } from "@/config/api";
 
-import { AuthContext } from "./AuthContext";
+import { AuthContext, type AuthUser } from "./AuthContext";
+
+interface SessionData {
+	user: AuthUser;
+	access_token: string;
+}
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
 	const navigate = useNavigate();
-	const [session, setSession] = useState<Session | null>(null);
+	const [session, setSession] = useState<SessionData | null>(null);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		supabase.auth
-			.getSession()
-			.then(({ data: { session: currentSession }, error }) => {
-				if (error) {
-					// A failed session restore must not leave the app stuck on the
-					// loading screen; treat it as logged out.
-					console.error("Gagal memuat sesi:", error.message);
+		apiFetch("/api/auth/me")
+			.then(async (res) => {
+				if (!res.ok) {
+					clearTokens();
+					setSession(null);
+					return;
 				}
-				setSession(currentSession ?? null);
+				const data = await res.json();
+				const token = localStorage.getItem("sb_access_token");
+				setSession({
+					user: data.user,
+					access_token: token || "",
+				});
 			})
-			.catch((restoreError) => {
-				console.error("Gagal memuat sesi:", restoreError);
+			.catch(() => {
+				clearTokens();
 				setSession(null);
 			})
 			.finally(() => {
 				setLoading(false);
 			});
-
-		const {
-			data: { subscription },
-		} = supabase.auth.onAuthStateChange((_event, currentSession) => {
-			setSession(currentSession);
-			setLoading(false);
-		});
-
-		return () => subscription.unsubscribe();
 	}, []);
 
 	const signOut = async () => {
 		try {
-			await supabase.auth.signOut();
+			const refreshToken = getRefreshToken();
+			await apiFetch("/api/auth/signout", {
+				method: "POST",
+				body: JSON.stringify({ refresh_token: refreshToken }),
+			});
 		} finally {
-			// Navigate even if the sign-out call fails so the user is not stuck
-			// in a protected area with a broken session.
+			clearTokens();
+			setSession(null);
 			navigate("/login");
 		}
 	};

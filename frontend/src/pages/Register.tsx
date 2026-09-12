@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import LogoNav from "@/assets/logo/logo-nav.png";
 import AuthLayout from "@/components/ui/AuthLayout";
-import { supabase } from "@/config/supabase";
+import { apiFetch, setTokens } from "@/config/api";
 
 export default function Register() {
 	const navigate = useNavigate();
@@ -30,24 +30,26 @@ export default function Register() {
 		setLoading(true);
 
 		try {
-			const { data, error: authError } = await supabase.auth.signUp({
-				email,
-				password,
-				options: {
-					data: { full_name: name },
-				},
+			const res = await apiFetch("/api/auth/signup", {
+				method: "POST",
+				body: JSON.stringify({ email, password, fullName: name }),
 			});
 
-			if (authError) {
-				setError(authError.message);
+			const data = await res.json();
+
+			if (!res.ok) {
+				setError(data.error || "Gagal mendaftar");
 				return;
 			}
 
-			if (data.user && !data.session) {
-				navigate("/login?registered=true");
-			} else {
+			if (data.session) {
+				setTokens(data.session.access_token, data.session.refresh_token);
 				navigate("/dashboard");
+			} else {
+				navigate("/login?registered=true");
 			}
+		} catch {
+			setError("Gagal terhubung ke server");
 		} finally {
 			setLoading(false);
 		}
