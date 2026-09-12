@@ -20,11 +20,13 @@ import {
 	TileLayer,
 	useMap,
 } from "react-leaflet";
+import { useNavigate } from "react-router-dom";
 
 import Layout from "@/components/ui/Layout";
+import MapAttribution from "@/components/ui/MapAttribution";
 import { KRL_STATIONS, type Station } from "@/data/krl_stations";
 
-// @ts-ignore
+// @ts-expect-error Leaflet keeps this private field on its default icon prototype.
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
@@ -44,6 +46,17 @@ type Poi = {
 	type: string;
 	category: string;
 };
+
+type OverpassElement = {
+	type: string;
+	id: string | number;
+	lat?: number;
+	lon?: number;
+	center?: { lat?: number; lon?: number };
+	tags?: Record<string, string>;
+};
+
+type OverpassResponse = { elements?: OverpassElement[] };
 
 const OVERPASS_ENDPOINTS = [
 	"https://overpass-api.de/api/interpreter",
@@ -97,7 +110,7 @@ function buildPoiQuery(station: Station, radius: number, category: string) {
 	`;
 }
 
-async function fetchOverpass(query: string, signal: AbortSignal): Promise<any> {
+async function fetchOverpass(query: string, signal: AbortSignal): Promise<OverpassResponse> {
 	let lastError: unknown = null;
 
 	for (const endpoint of OVERPASS_ENDPOINTS) {
@@ -133,11 +146,11 @@ async function fetchOverpass(query: string, signal: AbortSignal): Promise<any> {
 	throw lastError ?? new Error("Overpass request failed");
 }
 
-function parsePois(data: any, category: string): Poi[] {
+function parsePois(data: OverpassResponse, category: string): Poi[] {
 	const elements = Array.isArray(data?.elements) ? data.elements : [];
 
 	return elements
-		.map((element: any) => {
+		.map((element) => {
 			const lat = element.lat ?? element.center?.lat;
 
 			const lng = element.lon ?? element.center?.lon;
@@ -187,10 +200,11 @@ function getCategoryColor(category: string) {
 
 export default function EkonomiKawasan() {
 	const CARTO_API_KEY = import.meta.env.VITE_CARTO_API_KEY;
+	const navigate = useNavigate();
 
 	const center: [number, number] = [-6.321, 106.643];
 
-	const cartoUrl = `https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}{r}.png?key=${CARTO_API_KEY}`;
+	const cartoUrl = `https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}{r}.png?api_key=${CARTO_API_KEY}`;
 
 	const [search, setSearch] = useState("");
 	const [selectedStation, setSelectedStation] = useState<Station | null>(null);
@@ -303,8 +317,9 @@ export default function EkonomiKawasan() {
 				>
 					<TileLayer
 						url={cartoUrl}
-						attribution="&copy; OpenStreetMap contributors &copy; CARTO"
+						attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
 					/>
+					<MapAttribution />
 
 					<MapFocus station={selectedStation} />
 
@@ -342,8 +357,11 @@ export default function EkonomiKawasan() {
 
 										<button
 											type="button"
-											onClick={() => void selectStation(station)}
-											className="mt-3 w-full rounded-lg bg-blue-500 px-3 py-2 text-xs text-white"
+											onClick={(event) => {
+												event.stopPropagation();
+												navigate(`/map/tod/stasiun/${station.id}`);
+											}}
+											className="mt-3 w-full cursor-pointer rounded-lg bg-blue-500 px-3 py-2 text-xs font-medium text-white transition hover:bg-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
 										>
 											Analyze Station
 										</button>
@@ -382,7 +400,8 @@ export default function EkonomiKawasan() {
 					{showSurvey && <></>}
 				</MapContainer>
 
-				<div className="absolute top-28 left-4 z-[1000] bg-white w-80 rounded-xl shadow-lg p-5">
+				<div className="absolute inset-x-3 bottom-3 z-[1000] max-h-[58vh] overflow-y-auto overscroll-contain rounded-2xl bg-white p-4 shadow-2xl md:inset-x-auto md:bottom-auto md:left-4 md:top-28 md:max-h-[calc(100vh-8rem)] md:w-80 md:rounded-xl md:p-5 md:shadow-lg">
+					<div className="mx-auto mb-3 h-1 w-10 rounded-full bg-slate-200 md:hidden" aria-hidden="true" />
 					<div className="relative mb-4">
 						<Search className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
 
@@ -395,7 +414,7 @@ export default function EkonomiKawasan() {
 						/>
 					</div>
 
-					<div className="max-h-44 overflow-y-auto mb-5 space-y-1">
+					<div className="mb-5 max-h-32 space-y-1 overflow-y-auto sm:max-h-40 md:max-h-44">
 						{filteredStations.map((station) => {
 							const active = selectedStation?.id === station.id;
 
@@ -550,7 +569,7 @@ export default function EkonomiKawasan() {
 				</div>
 
 				{selectedStation && (
-					<div className="absolute top-28 right-4 z-[1000] bg-white w-80 rounded-xl shadow-lg p-5">
+					<div className="absolute right-4 top-28 z-[1000] hidden w-80 rounded-xl bg-white p-5 shadow-lg md:block">
 						<div className="flex items-start justify-between gap-3">
 							<div>
 								<p className="text-[10px] uppercase tracking-wider text-gray-400">

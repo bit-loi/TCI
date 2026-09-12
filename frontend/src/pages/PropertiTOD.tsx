@@ -10,9 +10,10 @@ import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { useNavigate } from "react-router-dom";
 
 import Layout from "@/components/ui/Layout";
+import MapAttribution from "@/components/ui/MapAttribution";
 import { useStations, type Station } from "@/hooks/useStations";
 
-// @ts-ignore
+// @ts-expect-error Leaflet keeps this private field on its default icon prototype.
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
@@ -41,7 +42,7 @@ export default function PropertiTOD() {
 	const navigate = useNavigate();
 	const { stations } = useStations();
 
-	const cartoUrl = `https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}{r}.png?key=${CARTO_API_KEY}`;
+	const cartoUrl = `https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}{r}.png?api_key=${CARTO_API_KEY}`;
 
 	const [search, setSearch] = useState("");
 	const [selectedStation, setSelectedStation] = useState<Station | null>(null);
@@ -90,8 +91,9 @@ export default function PropertiTOD() {
 				>
 					<TileLayer
 						url={cartoUrl}
-						attribution="&copy; OpenStreetMap contributors &copy; CARTO"
+						attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
 					/>
+					<MapAttribution />
 
 					<MapFocus station={selectedStation} />
 
@@ -149,7 +151,8 @@ export default function PropertiTOD() {
 					)}
 				</MapContainer>
 
-				<div className="absolute top-28 left-4 z-[1000] bg-white w-80 rounded-xl shadow-lg p-5">
+				<div className="absolute inset-x-3 bottom-3 z-[1000] max-h-[58vh] overflow-y-auto overscroll-contain rounded-2xl bg-white p-4 shadow-2xl md:inset-x-auto md:bottom-auto md:left-4 md:top-28 md:max-h-[calc(100vh-8rem)] md:w-80 md:rounded-xl md:p-5 md:shadow-lg">
+					<div className="mx-auto mb-3 h-1 w-10 rounded-full bg-slate-200 md:hidden" aria-hidden="true" />
 					<div className="relative mb-6">
 						<Search className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
 
@@ -162,7 +165,7 @@ export default function PropertiTOD() {
 						/>
 					</div>
 
-					<div className="max-h-48 overflow-y-auto mb-6 space-y-1">
+					<div className="mb-6 max-h-32 space-y-1 overflow-y-auto sm:max-h-40 md:max-h-48">
 						{filteredStations.map((station) => {
 							const active = selectedStation?.id === station.id;
 

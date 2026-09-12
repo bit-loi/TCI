@@ -17,6 +17,7 @@ import Privacy from "./pages/Privacy";
 import PropertiTOD from "./pages/PropertiTOD";
 import Register from "./pages/Register";
 import StationDetail from "./pages/StationDetail";
+import StationTypology from "./pages/StationTypology";
 import Terms from "./pages/Terms";
 
 function App() {
@@ -34,6 +35,24 @@ function App() {
 					element={
 						<ProtectedRoute>
 							<Dashboard />
+						</ProtectedRoute>
+					}
+				/>
+
+				<Route
+					path="/dashboard/trend"
+					element={
+						<ProtectedRoute>
+							<StationDetail />
+						</ProtectedRoute>
+					}
+				/>
+
+				<Route
+					path="/dashboard/typology"
+					element={
+						<ProtectedRoute>
+							<StationTypology />
 						</ProtectedRoute>
 					}
 				/>
@@ -76,6 +95,24 @@ function App() {
 
 				<Route path="/terms" element={<Terms />} />
 				<Route path="/privacy" element={<Privacy />} />
+
+				{/* Unknown paths inside private route namespaces must still pass auth. */}
+				<Route
+					path="/dashboard/*"
+					element={
+						<ProtectedRoute>
+							<NotFound />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path="/map/*"
+					element={
+						<ProtectedRoute>
+							<NotFound />
+						</ProtectedRoute>
+					}
+				/>
 
 				{/* Catch-all: any unknown URL gets the 404 page. */}
 				<Route path="*" element={<NotFound />} />
