@@ -32,6 +32,14 @@ app.use("/api/auth", rateLimit({ windowMs: 15 * 60 * 1000, max: 10 }));
 
 app.use(logger);
 
+app.get("/", (_req, res) => {
+	res.json({
+		status: "ok",
+		service: "TCI API",
+		health: "/api/health",
+	});
+});
+
 app.get("/api/health", (_req, res) => {
 	res.json({ status: "ok", timestamp: new Date().toISOString() });
 });
@@ -50,7 +58,9 @@ app.use((_req, res) => {
 
 app.use(errorHandler);
 
-if (process.env.NODE_ENV !== "test") {
+// Start a persistent HTTP server only when this file is executed directly.
+// Vercel imports the exported Express app and owns the server lifecycle.
+if (require.main === module) {
 	app.listen(PORT, () => {
 		console.log(`Server running on port ${PORT}`);
 	});
