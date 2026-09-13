@@ -145,4 +145,4 @@ docker compose -f docker-compose.prod.yml down
 
 ## License
 
-Project documentation and analysis are intended for the MAPID WebGIS Competition, Mass Transportation Edition, 2026. Raw MAPID data must not be redistributed outside the competition per competition data terms.
+Project documentation & analysis are intended for the MAPID WebGIS Competition, Mass Transportation Edition, 2026. Raw MAPID data must not be redistributed outside the competition per competition data terms.
