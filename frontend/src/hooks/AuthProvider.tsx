@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { apiFetch, clearTokens, getRefreshToken } from "@/config/api";
+import { apiFetch, clearTokens, getRefreshToken, setTokens } from "@/config/api";
 
 import { AuthContext, type AuthUser } from "./AuthContext";
 
@@ -47,6 +47,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 			});
 	}, []);
 
+	const completeSignIn = (
+		user: AuthUser,
+		accessToken: string,
+		refreshToken: string,
+	) => {
+		setTokens(accessToken, refreshToken);
+		setSession({ user, access_token: accessToken });
+	};
+
 	const signOut = async () => {
 		try {
 			const refreshToken = getRefreshToken();
@@ -67,6 +76,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 				session,
 				user: session?.user ?? null,
 				loading,
+				completeSignIn,
 				signOut,
 			}}
 		>

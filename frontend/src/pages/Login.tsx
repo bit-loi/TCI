@@ -6,13 +6,15 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 import LogoNav from "@/assets/logo/logo-nav.png";
 import AuthLayout from "@/components/ui/AuthLayout";
-import { apiFetch, setTokens } from "@/config/api";
+import { apiFetch } from "@/config/api";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function Login() {
 	const navigate = useNavigate();
 	const [searchParams] = useSearchParams();
+	const { completeSignIn } = useAuth();
 	const registered = searchParams.get("registered") === "true";
-	const [email, setEmail] = useState("");
+	const [email, setEmail] = useState(() => searchParams.get("email")?.trim() ?? "");
 	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
 	const [loading, setLoading] = useState(false);
@@ -36,7 +38,11 @@ export default function Login() {
 				return;
 			}
 
-			setTokens(data.session.access_token, data.session.refresh_token);
+			completeSignIn(
+				data.user,
+				data.session.access_token,
+				data.session.refresh_token,
+			);
 			navigate("/dashboard");
 		} catch {
 			setError("Gagal terhubung ke server");

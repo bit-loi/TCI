@@ -17,9 +17,9 @@ vi.mock("@/config/api", () => ({
 
 import Login from "@/pages/Login";
 
-function renderLogin() {
+function renderLogin(initialEntry = "/login") {
 	return render(
-		<MemoryRouter initialEntries={["/login"]}>
+		<MemoryRouter initialEntries={[initialEntry]}>
 			<Login />
 		</MemoryRouter>,
 	);
@@ -68,6 +68,12 @@ describe("Login Page", () => {
 		await user.type(emailInput, "test@example.com");
 
 		expect(emailInput).toHaveValue("test@example.com");
+	});
+
+	it("prefills email from the login URL", () => {
+		renderLogin("/login?registered=true&email=user%40example.com");
+
+		expect(screen.getByLabelText("Email")).toHaveValue("user@example.com");
 	});
 
 	it("updates password input", async () => {
