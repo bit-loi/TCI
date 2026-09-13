@@ -15,6 +15,15 @@ const config = {
 			"@": fileURLToPath(new URL("./src", import.meta.url)),
 		},
 	},
+	server: {
+		proxy: {
+			"/api/overpass": {
+				target: "https://overpass-api.de",
+				changeOrigin: true,
+				rewrite: () => "/api/interpreter",
+			},
+		},
+	},
 	test: {
 		environment: "jsdom",
 		globals: true,

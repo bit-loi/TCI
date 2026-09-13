@@ -25,7 +25,6 @@ import { useNavigate } from "react-router-dom";
 import Layout from "@/components/ui/Layout";
 import MapAttribution from "@/components/ui/MapAttribution";
 import { KRL_STATIONS, type Station } from "@/data/krl_stations";
-import { API } from "@/config/api";
 
 // @ts-expect-error Leaflet keeps this private field on its default icon prototype.
 delete L.Icon.Default.prototype._getIconUrl;
@@ -105,15 +104,13 @@ function buildPoiQuery(station: Station, radius: number, category: string) {
 }
 
 async function fetchOverpass(query: string, signal: AbortSignal): Promise<OverpassResponse> {
-	const overpassApi = `${API}/api/overpass`;
-
 	try {
-		const response = await fetch(overpassApi, {
+		const response = await fetch("/api/overpass", {
 			method: "POST",
 			headers: {
-				"Content-Type": "application/json",
+				"Content-Type": "application/x-www-form-urlencoded",
 			},
-			body: JSON.stringify({ data: query }),
+			body: `data=${encodeURIComponent(query)}`,
 			signal,
 		});
 
@@ -259,7 +256,7 @@ export default function EkonomiKawasan() {
 
 		const timeout = window.setTimeout(() => {
 			controller.abort();
-		}, 8000);
+		}, 22_000);
 
 		try {
 			const query = buildPoiQuery(station, radius, selectedCategory);
