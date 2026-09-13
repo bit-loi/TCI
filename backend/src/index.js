@@ -24,6 +24,7 @@ app.use(securityHeaders);
 app.use(cors(corsOptions));
 // Cap request body size to blunt oversized-payload DoS.
 app.use(express.json({ limit: "16kb" }));
+app.use(express.urlencoded({ extended: false, limit: "16kb" }));
 
 // General API rate limit.
 app.use("/api", rateLimit());
