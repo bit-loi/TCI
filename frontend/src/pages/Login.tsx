@@ -10,6 +10,7 @@ import { apiFetch } from "@/config/api";
 import { useAuth } from "@/hooks/useAuth";
 
 const DEFAULT_EMAIL = "demo@tci.id";
+const DEFAULT_PASSWORD = "DemoTCI2026!";
 
 export default function Login() {
 	const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function Login() {
 	const [email, setEmail] = useState(
 		() => searchParams.get("email")?.trim() || DEFAULT_EMAIL,
 	);
-	const [password, setPassword] = useState("");
+	const [password, setPassword] = useState(DEFAULT_PASSWORD);
 	const [showPassword, setShowPassword] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState("");

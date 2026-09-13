@@ -38,6 +38,9 @@ describe("Login Page", () => {
 		expect(screen.getByLabelText("Password", { exact: true })).toBeInTheDocument();
 		expect(screen.getByRole("button", { name: /masuk$/i })).toBeInTheDocument();
 		expect(screen.getByLabelText("Email")).toHaveValue("demo@tci.id");
+		expect(screen.getByLabelText("Password", { exact: true })).toHaveValue(
+			"DemoTCI2026!",
+		);
 	});
 
 	it("renders back to home link", () => {
@@ -83,6 +86,7 @@ describe("Login Page", () => {
 		renderLogin();
 
 		const passwordInput = screen.getByLabelText("Password", { exact: true });
+		await user.clear(passwordInput);
 		await user.type(passwordInput, "password123");
 
 		expect(passwordInput).toHaveValue("password123");
@@ -120,6 +124,7 @@ describe("Login Page", () => {
 
 		await user.clear(screen.getByLabelText("Email"));
 		await user.type(screen.getByLabelText("Email"), "test@example.com");
+		await user.clear(screen.getByLabelText("Password", { exact: true }));
 		await user.type(screen.getByLabelText("Password", { exact: true }), "password123");
 		await user.click(screen.getByRole("button", { name: /masuk$/i }));
 
@@ -139,6 +144,7 @@ describe("Login Page", () => {
 
 		await user.clear(screen.getByLabelText("Email"));
 		await user.type(screen.getByLabelText("Email"), "wrong@example.com");
+		await user.clear(screen.getByLabelText("Password", { exact: true }));
 		await user.type(screen.getByLabelText("Password", { exact: true }), "wrongpass");
 		await user.click(screen.getByRole("button", { name: /masuk$/i }));
 
@@ -154,6 +160,7 @@ describe("Login Page", () => {
 
 		await user.clear(screen.getByLabelText("Email"));
 		await user.type(screen.getByLabelText("Email"), "test@example.com");
+		await user.clear(screen.getByLabelText("Password", { exact: true }));
 		await user.type(screen.getByLabelText("Password", { exact: true }), "password123");
 		await user.click(screen.getByRole("button", { name: /masuk$/i }));
 
@@ -174,6 +181,7 @@ describe("Login Page", () => {
 
 		await user.clear(screen.getByLabelText("Email"));
 		await user.type(screen.getByLabelText("Email"), "test@example.com");
+		await user.clear(screen.getByLabelText("Password", { exact: true }));
 		await user.type(screen.getByLabelText("Password", { exact: true }), "password123");
 		await user.click(screen.getByRole("button", { name: /masuk$/i }));
 
