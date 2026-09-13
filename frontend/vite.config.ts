@@ -18,9 +18,9 @@ const config = {
 	server: {
 		proxy: {
 			"/api/overpass": {
-				target: "https://overpass-api.de",
+				target: "https://maps.mail.ru",
 				changeOrigin: true,
-				rewrite: () => "/api/interpreter",
+				rewrite: () => "/osm/tools/overpass/api/interpreter",
 			},
 		},
 	},

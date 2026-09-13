@@ -3,7 +3,7 @@
 	"rewrites": [
 		{
 			"source": "/api/overpass",
-			"destination": "https://overpass-api.de/api/interpreter"
+			"destination": "https://maps.mail.ru/osm/tools/overpass/api/interpreter"
 		},
 		{
 			"source": "/api/:path*",
