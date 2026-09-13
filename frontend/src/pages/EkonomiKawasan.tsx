@@ -25,6 +25,7 @@ import { useNavigate } from "react-router-dom";
 import Layout from "@/components/ui/Layout";
 import MapAttribution from "@/components/ui/MapAttribution";
 import { KRL_STATIONS, type Station } from "@/data/krl_stations";
+import { API } from "@/config/api";
 
 // @ts-expect-error Leaflet keeps this private field on its default icon prototype.
 delete L.Icon.Default.prototype._getIconUrl;
@@ -56,14 +57,7 @@ type OverpassElement = {
 	tags?: Record<string, string>;
 };
 
-type OverpassResponse = { elements?: OverpassElement[] };
-
-const OVERPASS_ENDPOINTS = [
-	"https://overpass-api.de/api/interpreter",
-	"https://overpass.kumi.systems/api/interpreter",
-];
-
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+type OverpassResponse = { elements?: OverpassElement[]; raw?: string };
 
 function MapFocus({ station }: { station: Station | null }) {
 	const map = useMap();
@@ -111,39 +105,45 @@ function buildPoiQuery(station: Station, radius: number, category: string) {
 }
 
 async function fetchOverpass(query: string, signal: AbortSignal): Promise<OverpassResponse> {
-	let lastError: unknown = null;
+	const overpassApi = `${API}/api/overpass`;
 
-	for (const endpoint of OVERPASS_ENDPOINTS) {
-		try {
-			const response = await fetch(endpoint, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/x-www-form-urlencoded",
-				},
-				body: `data=${encodeURIComponent(query)}`,
-				signal,
-			});
+	try {
+		const response = await fetch(overpassApi, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ data: query }),
+			signal,
+		});
 
-			if (response.status === 429) {
-				await sleep(500);
-				continue;
-			}
+		if (!response.ok) {
+			throw new Error(`Overpass HTTP ${response.status}`);
+		}
 
-			if (!response.ok) {
-				throw new Error(`Overpass HTTP ${response.status}`);
-			}
-
-			return await response.json();
-		} catch (error) {
-			lastError = error;
-
-			if (signal.aborted) {
-				throw error;
+		const json = await response.json();
+		// Backend returns parsed JSON from Overpass. Extract elements if present.
+		if (json && typeof json === "object" && Array.isArray(json.elements)) {
+			return json;
+		}
+		// If backend returned raw text wrapper, try to parse it.
+		if (json && typeof json === "object" && typeof json.raw === "string") {
+			try {
+				const parsed = JSON.parse(json.raw);
+				if (parsed && typeof parsed === "object" && Array.isArray(parsed.elements)) {
+					return parsed;
+				}
+			} catch {
+				// raw text is not valid JSON
 			}
 		}
+		throw new Error("Unexpected Overpass response shape");
+	} catch (error) {
+		if (signal.aborted) {
+			throw error;
+		}
+		throw error;
 	}
-
-	throw lastError ?? new Error("Overpass request failed");
 }
 
 function parsePois(data: OverpassResponse, category: string): Poi[] {

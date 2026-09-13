@@ -28,7 +28,8 @@ export type StationForecast = {
   forecast: { period: string; predicted_passengers: number }[];
 };
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API = import.meta.env.VITE_API_URL
+	|| (import.meta.env.DEV ? "http://localhost:3000" : "");
 
 export function useStations() {
   const [stations, setStations] = useState<StationML[]>([]);
