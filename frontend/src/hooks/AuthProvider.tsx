@@ -33,7 +33,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 					access_token: token || "",
 				});
 			})
-			.catch(() => {
+			.catch((err) => {
+				console.error("Auth check failed:", err);
 				clearTokens();
 				setSession(null);
 			})
