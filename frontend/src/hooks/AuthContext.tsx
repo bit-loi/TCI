@@ -5,6 +5,9 @@ import { createContext } from "react";
 export interface AuthUser {
 	id: string;
 	email: string;
+	user_metadata?: {
+		full_name?: string;
+	};
 }
 
 export interface AuthContextType {
