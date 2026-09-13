@@ -37,6 +37,7 @@ describe("Login Page", () => {
 		expect(screen.getByLabelText("Email")).toBeInTheDocument();
 		expect(screen.getByLabelText("Password", { exact: true })).toBeInTheDocument();
 		expect(screen.getByRole("button", { name: /masuk$/i })).toBeInTheDocument();
+		expect(screen.getByLabelText("Email")).toHaveValue("demo@tci.id");
 	});
 
 	it("renders back to home link", () => {
@@ -65,6 +66,7 @@ describe("Login Page", () => {
 		renderLogin();
 
 		const emailInput = screen.getByLabelText("Email");
+		await user.clear(emailInput);
 		await user.type(emailInput, "test@example.com");
 
 		expect(emailInput).toHaveValue("test@example.com");
@@ -116,6 +118,7 @@ describe("Login Page", () => {
 		});
 		renderLogin();
 
+		await user.clear(screen.getByLabelText("Email"));
 		await user.type(screen.getByLabelText("Email"), "test@example.com");
 		await user.type(screen.getByLabelText("Password", { exact: true }), "password123");
 		await user.click(screen.getByRole("button", { name: /masuk$/i }));
@@ -134,6 +137,7 @@ describe("Login Page", () => {
 		});
 		renderLogin();
 
+		await user.clear(screen.getByLabelText("Email"));
 		await user.type(screen.getByLabelText("Email"), "wrong@example.com");
 		await user.type(screen.getByLabelText("Password", { exact: true }), "wrongpass");
 		await user.click(screen.getByRole("button", { name: /masuk$/i }));
@@ -148,6 +152,7 @@ describe("Login Page", () => {
 		mockApiFetch.mockRejectedValue(new Error("Network error"));
 		renderLogin();
 
+		await user.clear(screen.getByLabelText("Email"));
 		await user.type(screen.getByLabelText("Email"), "test@example.com");
 		await user.type(screen.getByLabelText("Password", { exact: true }), "password123");
 		await user.click(screen.getByRole("button", { name: /masuk$/i }));
@@ -167,6 +172,7 @@ describe("Login Page", () => {
 		);
 		renderLogin();
 
+		await user.clear(screen.getByLabelText("Email"));
 		await user.type(screen.getByLabelText("Email"), "test@example.com");
 		await user.type(screen.getByLabelText("Password", { exact: true }), "password123");
 		await user.click(screen.getByRole("button", { name: /masuk$/i }));

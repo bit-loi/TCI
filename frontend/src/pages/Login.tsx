@@ -9,12 +9,16 @@ import AuthLayout from "@/components/ui/AuthLayout";
 import { apiFetch } from "@/config/api";
 import { useAuth } from "@/hooks/useAuth";
 
+const DEFAULT_EMAIL = "demo@tci.id";
+
 export default function Login() {
 	const navigate = useNavigate();
 	const [searchParams] = useSearchParams();
 	const { completeSignIn } = useAuth();
 	const registered = searchParams.get("registered") === "true";
-	const [email, setEmail] = useState(() => searchParams.get("email")?.trim() ?? "");
+	const [email, setEmail] = useState(
+		() => searchParams.get("email")?.trim() || DEFAULT_EMAIL,
+	);
 	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
 	const [loading, setLoading] = useState(false);
