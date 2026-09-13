@@ -3,7 +3,7 @@
 	"rewrites": [
 		{
 			"source": "/api/overpass",
-			"destination": "https://maps.mail.ru/osm/tools/overpass/api/interpreter"
+			"destination": "https://tci-xfmj.vercel.app/api/overpass"
 		},
 		{
 			"source": "/api/:path*",

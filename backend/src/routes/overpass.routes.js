@@ -6,8 +6,8 @@ const router = express.Router();
 // Hard-coded list of allowed Overpass endpoints — never forward to an
 // arbitrary URL supplied by the client (avoids SSRF).
 const OVERPASS_ENDPOINTS = [
+	"https://maps.mail.ru/osm/tools/overpass/api/interpreter",
 	"https://overpass-api.de/api/interpreter",
-	"https://overpass.kumi.systems/api/interpreter",
 ];
 
 // Largest query body we will forward (bytes). Overpass queries are normally
@@ -15,25 +15,28 @@ const OVERPASS_ENDPOINTS = [
 const MAX_QUERY_BYTES = 8192;
 
 // Forward timeout in milliseconds.
-const FORWARD_TIMEOUT_MS = 25_000;
+const FORWARD_TIMEOUT_MS = 9_000;
+
+const OVERPASS_USER_AGENT = "TCI-Demo/1.0 (https://tci-nfs5.vercel.app)";
 
 // Try each endpoint in order until one responds OK.
 async function forwardQuery(query) {
 	let lastError;
 
 	for (const url of OVERPASS_ENDPOINTS) {
-		try {
-			const controller = new AbortController();
-			const timer = setTimeout(() => controller.abort(), FORWARD_TIMEOUT_MS);
+		const controller = new AbortController();
+		const timer = setTimeout(() => controller.abort(), FORWARD_TIMEOUT_MS);
 
+		try {
 			const response = await fetch(url, {
 				method: "POST",
-				headers: { "Content-Type": "application/x-www-form-urlencoded" },
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded",
+					"User-Agent": OVERPASS_USER_AGENT,
+				},
 				body: "data=" + encodeURIComponent(query),
 				signal: controller.signal,
 			});
-
-			clearTimeout(timer);
 
 			if (response.status === 429) {
 				// Rate limited — try next endpoint.
@@ -47,6 +50,8 @@ async function forwardQuery(query) {
 			return response;
 		} catch (error) {
 			lastError = error;
+		} finally {
+			clearTimeout(timer);
 		}
 	}
 

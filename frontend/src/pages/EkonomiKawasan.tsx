@@ -236,12 +236,18 @@ export default function EkonomiKawasan() {
 		});
 	}, [search]);
 
-	const selectStation = async (station: Station) => {
+	const selectStation = async (
+		station: Station,
+		options?: { category?: string; radius?: number },
+	) => {
+		const activeCategory = options?.category ?? selectedCategory;
+		const activeRadius = options?.radius ?? radius;
+
 		setSelectedStation(station);
 		setPoiError("");
 		setShowBuffer(true);
 
-		const cacheKey = `${station.id}-${radius}-${selectedCategory}`;
+		const cacheKey = `${station.id}-${activeRadius}-${activeCategory}`;
 
 		const cached = poiCache[cacheKey];
 
@@ -259,11 +265,11 @@ export default function EkonomiKawasan() {
 		}, 22_000);
 
 		try {
-			const query = buildPoiQuery(station, radius, selectedCategory);
+			const query = buildPoiQuery(station, activeRadius, activeCategory);
 
 			const data = await fetchOverpass(query, controller.signal);
 
-			const parsed = parsePois(data, selectedCategory);
+			const parsed = parsePois(data, activeCategory);
 
 			setPois(parsed);
 
@@ -462,9 +468,7 @@ export default function EkonomiKawasan() {
 										setSelectedCategory(category);
 
 										if (selectedStation) {
-											setTimeout(() => {
-												void selectStation(selectedStation);
-											}, 0);
+											void selectStation(selectedStation, { category });
 										}
 									}}
 									className={`px-3 py-1.5 rounded-full text-xs border transition ${
