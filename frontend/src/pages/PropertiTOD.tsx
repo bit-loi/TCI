@@ -42,7 +42,7 @@ export default function PropertiTOD() {
 	const navigate = useNavigate();
 	const { stations } = useStations();
 
-	const cartoUrl = `https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}{r}.png?api_key=${CARTO_API_KEY}`;
+	const cartoUrl = `https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}{r}.png?key=${CARTO_API_KEY}`;
 
 	const [search, setSearch] = useState("");
 	const [selectedStation, setSelectedStation] = useState<Station | null>(null);

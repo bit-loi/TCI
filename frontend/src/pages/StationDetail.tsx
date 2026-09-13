@@ -62,7 +62,7 @@ export default function StationDetail() {
 		: comparisonStations[0]?.id ?? "";
 	const comparison = comparisonStations.find((item) => item.id === effectiveComparisonId);
 	const CARTO_API_KEY = import.meta.env.VITE_CARTO_API_KEY;
-	const cartoUrl = `https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}{r}.png?api_key=${CARTO_API_KEY}`;
+	const cartoUrl = `https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}{r}.png?key=${CARTO_API_KEY}`;
 
 	if (loading || stationsLoading) {
 		return <div className="flex min-h-screen items-center justify-center bg-[#f7faff]"><p className="text-sm text-slate-500">Memuat trend dashboard...</p></div>;
