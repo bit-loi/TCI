@@ -27,8 +27,24 @@ app.use(express.json({ limit: "16kb" }));
 
 // General API rate limit.
 app.use("/api", rateLimit());
-// Tighter limit on authentication endpoints against brute force.
-app.use("/api/auth", rateLimit({ windowMs: 15 * 60 * 1000, max: 10 }));
+// Tighter limit on sensitive auth endpoints (signin, signup, etc.) against brute force.
+// /api/auth/me is excluded — it is a read-only session check, not a credential endpoint.
+app.use(
+	"/api/auth/signin",
+	rateLimit({ windowMs: 15 * 60 * 1000, max: 10 }),
+);
+app.use(
+	"/api/auth/signup",
+	rateLimit({ windowMs: 15 * 60 * 1000, max: 10 }),
+);
+app.use(
+	"/api/auth/signout",
+	rateLimit({ windowMs: 15 * 60 * 1000, max: 10 }),
+);
+app.use(
+	"/api/auth/reset-password",
+	rateLimit({ windowMs: 15 * 60 * 1000, max: 10 }),
+);
 
 app.use(logger);
 

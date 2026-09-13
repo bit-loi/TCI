@@ -21,6 +21,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 	useEffect(() => {
 		apiFetch("/api/auth/me")
 			.then(async (res) => {
+				if (res.status === 429) {
+					// Rate-limited — keep existing tokens, just stop loading.
+					setLoading(false);
+					return;
+				}
 				if (!res.ok) {
 					clearTokens();
 					setSession(null);
