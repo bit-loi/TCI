@@ -317,7 +317,6 @@ export default function Dashboard() {
 									key={feature.id}
 									to={feature.path}
 									onClick={() => setSidebarOpen(false)}
-									target="_blank"
 									className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
 										isActive
 											? "bg-[#f0f6ff] text-[#3a8fd6]"
