@@ -24,15 +24,12 @@ export default function Login() {
 		setError("");
 
 		try {
-			console.log("Attempting login for:", email);
 			const res = await apiFetch("/api/auth/signin", {
 				method: "POST",
 				body: JSON.stringify({ email, password }),
 			});
 
-			console.log("Login response status:", res.status);
 			const data = await res.json();
-			console.log("Login response data:", data);
 
 			if (!res.ok) {
 				setError(data.error || "Gagal masuk");

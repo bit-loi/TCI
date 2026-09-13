@@ -38,11 +38,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 					access_token: token || "",
 				});
 			})
-			.catch((err) => {
-				console.error("Auth check failed:", err);
-				clearTokens();
-				setSession(null);
-			})
+		.catch(() => {
+			clearTokens();
+			setSession(null);
+		})
 			.finally(() => {
 				setLoading(false);
 			});
