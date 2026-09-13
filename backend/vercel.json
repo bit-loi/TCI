@@ -4,5 +4,8 @@
     "src/index.js": {
       "maxDuration": 30
     }
-  }
+  },
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/src/index.js" }
+  ]
 }
